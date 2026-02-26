@@ -50,12 +50,12 @@ export default function Navbar() {
             <Link href="/services" className="nav-link-enhanced">Services</Link>
             <Link href="/about" className="nav-link-enhanced">About</Link>
             <Link href="/contact" className="nav-link-enhanced">Contact</Link>
-            <a 
-              href="mailto:sales@carrypacklogistics.com" 
+            <Link 
+              href="/get-quote" 
               className="btn-primary-enhanced"
             >
               Get Quote
-            </a>
+            </Link>
           </div>
 
           {/* Mobile menu button */}
@@ -91,13 +91,13 @@ export default function Navbar() {
           <Link href="/contact" className="mobile-nav-link-enhanced" onClick={() => setIsOpen(false)}>
             Contact
           </Link>
-          <a 
-            href="mailto:sales@carrypacklogistics.com" 
+          <Link 
+            href="/get-quote" 
             className="block w-full text-center btn-primary-enhanced mt-4"
             onClick={() => setIsOpen(false)}
           >
             Get Quote
-          </a>
+          </Link>
         </div>
       </div>
     </nav>
