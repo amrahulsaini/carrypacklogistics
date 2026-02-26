@@ -39,7 +39,7 @@ export async function POST(request: NextRequest) {
     }
 
     return NextResponse.json(
-      { message: 'Lead submitted successfully', lead: result[0] },
+      { message: 'Lead submitted successfully', lead: result.rows[0] },
       { status: 201 }
     );
   } catch (error) {
