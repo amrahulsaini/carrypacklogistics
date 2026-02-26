@@ -74,7 +74,7 @@ export default function GetQuotePage() {
       <section className="py-20 bg-gradient-to-r from-blue-600 to-blue-800 text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <Truck className="mx-auto mb-6" size={64} />
-          <h1 className="text-4xl md:text-5xl font-bold mb-6">Get Your Free Quote</h1>
+          <h1 className="text-4xl md:text-5xl font-bold mb-6">Get Your Quote</h1>
           <p className="text-xl text-blue-100 max-w-3xl mx-auto">
             Tell us about your moving requirements and get a customized quote within 24 hours
           </p>

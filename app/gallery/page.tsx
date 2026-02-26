@@ -197,10 +197,10 @@ export default function GalleryPage() {
             Ready to Experience Premium Packing?
           </h2>
           <p className="text-xl text-blue-100 mb-8">
-            Get a free quote for your next move and see the difference professional packing makes
+            Get a quote for your next move and see the difference professional packing makes
           </p>
           <a href="/get-quote" className="btn-primary btn-lg bg-white text-blue-600 hover:bg-gray-100">
-            Get Free Quote
+            Get Quote
           </a>
         </div>
       </section>
