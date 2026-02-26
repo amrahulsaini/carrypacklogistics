@@ -42,7 +42,9 @@ export default function GetQuotePage() {
       const data = await response.json();
 
       if (!response.ok) {
-        throw new Error(data.error || 'Failed to submit lead');
+        // Show detailed error with status code
+        const errorMessage = `Error ${response.status}: ${data.error || 'Failed to submit lead'}. ${JSON.stringify(data)}`;
+        throw new Error(errorMessage);
       }
 
       setIsSubmitted(true);

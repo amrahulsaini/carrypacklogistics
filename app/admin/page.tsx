@@ -42,13 +42,15 @@ export default function AdminPage() {
       });
 
       if (response.status === 401) {
-        setError('Invalid password');
+        const data = await response.json();
+        setError(`Invalid password. Expected: "${process.env.NEXT_PUBLIC_DEBUG ? 'Check server logs' : 'Contact admin'}"`);
         setIsAuthenticated(false);
         return;
       }
 
       if (!response.ok) {
-        throw new Error('Failed to fetch leads');
+        const data = await response.json();
+        throw new Error(`Error ${response.status}: ${data.error || 'Failed to fetch leads'}`);
       }
 
       const data = await response.json();

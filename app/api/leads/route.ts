@@ -42,10 +42,17 @@ export async function POST(request: NextRequest) {
       { message: 'Lead submitted successfully', lead: result.rows[0] },
       { status: 201 }
     );
-  } catch (error) {
+  } catch (error: any) {
     console.error('Error submitting lead:', error);
+    const errorMessage = error?.message || 'Failed to submit lead';
+    const errorDetails = error?.stack || error?.toString() || 'No additional details';
+    
     return NextResponse.json(
-      { error: 'Failed to submit lead' },
+      { 
+        error: errorMessage,
+        details: errorDetails,
+        timestamp: new Date().toISOString()
+      },
       { status: 500 }
     );
   }

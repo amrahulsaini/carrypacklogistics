@@ -34,9 +34,10 @@ export async function PATCH(request: NextRequest) {
   try {
     const authHeader = request.headers.get('authorization');
     const password = authHeader?.replace('Bearer ', '');
+    const expectedPassword = process.env.ADMIN_PASSWORD;
 
     // Check password
-    if (password !== process.env.ADMIN_PASSWORD) {
+    if (password !== expectedPassword) {
       return NextResponse.json(
         { error: 'Unauthorized' },
         { status: 401 }
