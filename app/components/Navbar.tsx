@@ -49,6 +49,7 @@ export default function Navbar() {
             <Link href="/" className="nav-link-enhanced">Home</Link>
             <Link href="/services" className="nav-link-enhanced">Services</Link>
             <Link href="/about" className="nav-link-enhanced">About</Link>
+            <Link href="/gallery" className="nav-link-enhanced">Gallery</Link>
             <Link href="/contact" className="nav-link-enhanced">Contact</Link>
             <Link 
               href="/get-quote" 
@@ -87,6 +88,9 @@ export default function Navbar() {
           </Link>
           <Link href="/about" className="mobile-nav-link-enhanced" onClick={() => setIsOpen(false)}>
             About
+          </Link>
+          <Link href="/gallery" className="mobile-nav-link-enhanced" onClick={() => setIsOpen(false)}>
+            Gallery
           </Link>
           <Link href="/contact" className="mobile-nav-link-enhanced" onClick={() => setIsOpen(false)}>
             Contact

@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Lock, Eye, RefreshCw, Calendar, Mail, Phone, MapPin, MessageSquare, CheckCircle, Clock, AlertCircle, Download, FileText, Table2, FileSpreadsheet } from 'lucide-react';
+import { Lock, Eye, RefreshCw, Calendar, Mail, Phone, MapPin, MessageSquare, CheckCircle, Clock, AlertCircle, Download, FileText, Table2, FileSpreadsheet, Trash2 } from 'lucide-react';
 import jsPDF from 'jspdf';
 import autoTable from 'jspdf-autotable';
 import * as XLSX from 'xlsx';
@@ -106,6 +106,33 @@ export default function AdminPage() {
     }
   };
 
+  const handleDeleteLead = async (leadId: number, leadName: string) => {
+    if (!confirm(`Are you sure you want to permanently delete lead from ${leadName}?`)) {
+      return;
+    }
+
+    try {
+      const response = await fetch('/api/admin/leads', {
+        method: 'DELETE',
+        headers: {
+          'Authorization': `Bearer ${password}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ id: leadId }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to delete lead');
+      }
+
+      showToast('✅ Lead deleted successfully!', 'success');
+      fetchLeads(password);
+    } catch (err: any) {
+      setError(err.message || 'Failed to delete lead');
+      showToast(`❌ ${err.message || 'Failed to delete lead'}`, 'error');
+    }
+  };
+
   const exportToPDF = () => {
     const doc = new jsPDF();
     
@@ -122,7 +149,8 @@ export default function AdminPage() {
       lead.name,
       lead.contact_number,
       lead.email,
-      `${lead.moving_from} → ${lead.moving_to}`,
+      `${lead.moving_from}`,
+      `${lead.moving_to}`,
       new Date(lead.moving_date).toLocaleDateString(),
       lead.status,
       new Date(lead.created_at).toLocaleDateString()
@@ -130,11 +158,21 @@ export default function AdminPage() {
     
     autoTable(doc, {
       startY: 40,
-      head: [['Name', 'Phone', 'Email', 'Route', 'Moving Date', 'Status', 'Created']],
+      head: [['Name', 'Phone', 'Email', 'From', 'To', 'Moving Date', 'Status', 'Created']],
       body: tableData,
       theme: 'grid',
-      styles: { fontSize: 8 },
-      headStyles: { fillColor: [37, 99, 235] }
+      styles: { fontSize: 7, cellPadding: 2 },
+      headStyles: { fillColor: [37, 99, 235], fontSize: 8 },
+      columnStyles: {
+        0: { cellWidth: 25 },
+        1: { cellWidth: 20 },
+        2: { cellWidth: 30 },
+        3: { cellWidth: 25 },
+        4: { cellWidth: 25 },
+        5: { cellWidth: 20 },
+        6: { cellWidth: 18 },
+        7: { cellWidth: 20 }
+      }
     });
     
     doc.save(`leads-${new Date().toISOString().split('T')[0]}.pdf`);
@@ -393,24 +431,34 @@ export default function AdminPage() {
                       {getStatusBadge(lead.status)}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm">
-                      <button
-                        onClick={() => setSelectedLead(lead)}
-                        className="text-blue-600 hover:text-blue-800 mr-4"
-                      >
-                        <Eye size={18} />
-                      </button>
-                      <select
-                        value={lead.status}
-                        onChange={(e) => handleStatusUpdate(lead.id, e.target.value)}
-                        className="text-sm border border-gray-300 rounded px-2 py-1"
-                      >
-                        <option value="new">New</option>
-                        <option value="contacted">Contacted</option>
-                        <option value="quoted">Quoted</option>
-                        <option value="confirmed">Confirmed</option>
-                        <option value="completed">Completed</option>
-                        <option value="cancelled">Cancelled</option>
-                      </select>
+                      <div className="flex items-center gap-2">
+                        <button
+                          onClick={() => setSelectedLead(lead)}
+                          className="text-blue-600 hover:text-blue-800"
+                          title="View Details"
+                        >
+                          <Eye size={18} />
+                        </button>
+                        <select
+                          value={lead.status}
+                          onChange={(e) => handleStatusUpdate(lead.id, e.target.value)}
+                          className="text-sm border border-gray-300 rounded px-2 py-1"
+                        >
+                          <option value="new">New</option>
+                          <option value="contacted">Contacted</option>
+                          <option value="quoted">Quoted</option>
+                          <option value="confirmed">Confirmed</option>
+                          <option value="completed">Completed</option>
+                          <option value="cancelled">Cancelled</option>
+                        </select>
+                        <button
+                          onClick={() => handleDeleteLead(lead.id, lead.name)}
+                          className="text-red-600 hover:text-red-800"
+                          title="Delete Lead"
+                        >
+                          <Trash2 size={18} />
+                        </button>
+                      </div>
                     </td>
                   </tr>
                 ))}

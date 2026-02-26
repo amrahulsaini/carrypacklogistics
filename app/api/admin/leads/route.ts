@@ -103,3 +103,56 @@ export async function PATCH(request: NextRequest) {
     );
   }
 }
+
+export async function DELETE(request: NextRequest) {
+  try {
+    // Initialize database (creates table if not exists)
+    await initDatabase();
+
+    const authHeader = request.headers.get('authorization');
+    const password = authHeader?.replace('Bearer ', '');
+
+    // Check password
+    if (password !== process.env.ADMIN_PASSWORD) {
+      return NextResponse.json(
+        { error: 'Unauthorized' },
+        { status: 401 }
+      );
+    }
+
+    const body = await request.json();
+    const { id } = body;
+
+    if (!id) {
+      return NextResponse.json(
+        { error: 'ID is required' },
+        { status: 400 }
+      );
+    }
+
+    // Delete lead from database
+    const result = await sql`
+      DELETE FROM leads
+      WHERE id = ${id}
+      RETURNING *
+    `;
+
+    if (result.rows.length === 0) {
+      return NextResponse.json(
+        { error: 'Lead not found' },
+        { status: 404 }
+      );
+    }
+
+    return NextResponse.json(
+      { message: 'Lead deleted successfully', lead: result.rows[0] },
+      { status: 200 }
+    );
+  } catch (error) {
+    console.error('Error deleting lead:', error);
+    return NextResponse.json(
+      { error: 'Failed to delete lead' },
+      { status: 500 }
+    );
+  }
+}
