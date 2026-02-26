@@ -1,10 +1,12 @@
 import nodemailer from 'nodemailer';
 
 const transporter = nodemailer.createTransport({
-  service: 'gmail',
+  host: 'smtp-relay.brevo.com',
+  port: 587,
+  secure: false,
   auth: {
-    user: process.env.GMAIL_USER,
-    pass: process.env.GMAIL_APP_PASSWORD,
+    user: process.env.BREVO_SMTP_USER,
+    pass: process.env.BREVO_SMTP_PASSWORD,
   },
 });
 
@@ -23,7 +25,7 @@ export async function sendLeadNotification(leadData: LeadData) {
 
   // Email to customer
   const customerMailOptions = {
-    from: process.env.GMAIL_USER,
+    from: '"Carry Pack Logistics" <sales@carrypacklogistics.com>',
     to: email,
     subject: 'Thank You for Your Inquiry - Carry Pack Logistics',
     html: `
@@ -84,7 +86,7 @@ export async function sendLeadNotification(leadData: LeadData) {
 
   // Email to admin
   const adminMailOptions = {
-    from: process.env.GMAIL_USER,
+    from: '"Carry Pack Logistics" <sales@carrypacklogistics.com>',
     to: ['sales@carrypacklogistics.com', 'carrypacklogistics@gmail.com'],
     subject: `New Lead: ${name} - Moving from ${movingFrom} to ${movingTo}`,
     html: `

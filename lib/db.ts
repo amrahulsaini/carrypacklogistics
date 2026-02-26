@@ -1,6 +1,6 @@
-import { neon } from '@neondatabase/serverless';
+import { sql as vercelSql } from '@vercel/postgres';
 
-export const sql = neon(process.env.DATABASE_URL!);
+export const sql = vercelSql;
 
 export async function initDatabase() {
   try {
