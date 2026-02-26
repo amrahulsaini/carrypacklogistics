@@ -179,7 +179,19 @@ export async function sendLeadNotification(leadData: LeadData) {
 }
 
 export async function sendStatusUpdateEmail(leadData: LeadData & { status: string }) {
+  console.log('📧 Starting sendStatusUpdateEmail function...');
+  console.log('Lead data:', { name: leadData.name, email: leadData.email, status: leadData.status });
+  
   const { name, email, movingFrom, movingTo, movingDate, status } = leadData;
+
+  // Check if SMTP credentials are set
+  if (!process.env.BREVO_SMTP_USER || !process.env.BREVO_SMTP_PASSWORD) {
+    const error = 'BREVO SMTP credentials not configured!';
+    console.error('❌', error);
+    throw new Error(error);
+  }
+  
+  console.log('✅ SMTP credentials found');
 
   const statusMessages: { [key: string]: { title: string; message: string; color: string } } = {
     contacted: {
@@ -268,12 +280,23 @@ export async function sendStatusUpdateEmail(leadData: LeadData & { status: strin
     `,
   };
 
+  console.log('📤 Preparing to send email to:', email);
+  console.log('Email subject:', customerMailOptions.subject);
+
   try {
-    await transporter.sendMail(customerMailOptions);
-    console.log('Status update email sent successfully to:', email);
+    console.log('🔄 Calling transporter.sendMail...');
+    const result = await transporter.sendMail(customerMailOptions);
+    console.log('✅ Status update email sent successfully!');
+    console.log('Email result:', result);
     return { success: true };
-  } catch (error) {
-    console.error('Error sending status update email:', error);
+  } catch (error: any) {
+    console.error('❌ Error sending status update email:', error);
+    console.error('Error details:', {
+      message: error.message,
+      code: error.code,
+      command: error.command,
+      response: error.response
+    });
     throw error;
   }
 }

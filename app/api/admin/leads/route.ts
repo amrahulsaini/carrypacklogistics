@@ -68,24 +68,31 @@ export async function PATCH(request: NextRequest) {
 
     const updatedLead = result.rows[0];
 
-    // Send status update email to customer (async, don't block response)
+    // Send status update email to customer
     if (updatedLead && updatedLead.status !== 'new') {
-      sendStatusUpdateEmail({
-        name: updatedLead.name,
-        contactNumber: updatedLead.contact_number,
-        email: updatedLead.email,
-        movingFrom: updatedLead.moving_from,
-        movingTo: updatedLead.moving_to,
-        movingDate: updatedLead.moving_date,
-        status: updatedLead.status,
-      }).catch(error => {
-        console.error('Failed to send status update email:', error);
+      console.log('Attempting to send status update email to:', updatedLead.email);
+      try {
+        await sendStatusUpdateEmail({
+          name: updatedLead.name,
+          contactNumber: updatedLead.contact_number,
+          email: updatedLead.email,
+          movingFrom: updatedLead.moving_from,
+          movingTo: updatedLead.moving_to,
+          movingDate: updatedLead.moving_date,
+          status: updatedLead.status,
+        });
+        console.log('✅ Status update email sent successfully to:', updatedLead.email);
+      } catch (error: any) {
+        console.error('❌ Failed to send status update email:', error);
+        console.error('Email error details:', error.message, error.stack);
         // Don't fail the request if email fails
-      });
+      }
+    } else {
+      console.log('Skipping email - status is "new" or lead not found');
     }
 
     return NextResponse.json(
-      { message: 'Lead updated successfully', lead: updatedLead },
+      { message: 'Lead updated successfully', lead: updatedLead, emailSent: updatedLead?.status !== 'new' },
       { status: 200 }
     );
   } catch (error) {
