@@ -1,9 +1,12 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { sql } from '@/lib/db';
+import { sql, initDatabase } from '@/lib/db';
 import { sendLeadNotification } from '@/lib/email';
 
 export async function POST(request: NextRequest) {
   try {
+    // Initialize database (creates table if not exists)
+    await initDatabase();
+
     const body = await request.json();
     const { name, contactNumber, email, movingFrom, movingTo, movingDate, message } = body;
 

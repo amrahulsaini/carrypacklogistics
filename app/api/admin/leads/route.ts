@@ -1,8 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { sql } from '@/lib/db';
+import { sql, initDatabase } from '@/lib/db';
 
 export async function GET(request: NextRequest) {
   try {
+    // Initialize database (creates table if not exists)
+    await initDatabase();
+
     const authHeader = request.headers.get('authorization');
     const password = authHeader?.replace('Bearer ', '');
 
