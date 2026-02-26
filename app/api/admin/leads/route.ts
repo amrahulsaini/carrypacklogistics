@@ -15,12 +15,12 @@ export async function GET(request: NextRequest) {
     }
 
     // Fetch all leads ordered by created_at desc
-    const leads = await sql`
+    const result = await sql`
       SELECT * FROM leads
       ORDER BY created_at DESC
     `;
 
-    return NextResponse.json({ leads }, { status: 200 });
+    return NextResponse.json({ leads: result.rows }, { status: 200 });
   } catch (error) {
     console.error('Error fetching leads:', error);
     return NextResponse.json(
@@ -62,7 +62,7 @@ export async function PATCH(request: NextRequest) {
     `;
 
     return NextResponse.json(
-      { message: 'Lead updated successfully', lead: result[0] },
+      { message: 'Lead updated successfully', lead: result.rows[0] },
       { status: 200 }
     );
   } catch (error) {
