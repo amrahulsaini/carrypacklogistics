@@ -379,6 +379,19 @@ h1, h2, h3, h4, h5, h6 {
   animation-delay: 0.8s;
 }
 
+.animation-delay-1000 {
+  animation-delay: 1s;
+}
+
+/* ===========================
+   Counter Display
+   =========================== */
+.counter-display {
+  display: inline-block;
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum";
+}
+
 /* ===========================
    Loading Spinner
    =========================== */

@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { Truck, Package, Warehouse, Car, Bike, Home, ArrowRight, CheckCircle, Clock, Shield, Users } from 'lucide-react';
+import { Truck, Package, Warehouse, Car, Bike, Home, ArrowRight, CheckCircle, Clock, Shield, Users, Award, TrendingUp, Zap } from 'lucide-react';
+import Counter from './components/Counter';
 
 export default function HomePage() {
   const services = [
@@ -97,10 +98,39 @@ export default function HomePage() {
             <p className="text-2xl md:text-3xl text-blue-600 font-semibold mb-8 animate-fade-in-up animation-delay-400">
               Premium Execution.
             </p>
-            <p className="text-lg text-gray-600 mb-10 max-w-3xl mx-auto animate-fade-in-up animation-delay-600">
+            <p className="text-lg text-gray-600 mb-6 max-w-3xl mx-auto animate-fade-in-up animation-delay-600">
               Your trusted partner for comprehensive logistics solutions in Ahmedabad. From transportation to warehousing, we deliver excellence at every step.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in-up animation-delay-800">
+            
+            {/* Added Hero Features */}
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto mb-10 animate-fade-in-up animation-delay-800">
+              <div className="bg-white/80 backdrop-blur-sm rounded-xl p-4 shadow-md hover:shadow-xl transition-all duration-300 hover:scale-105">
+                <div className="flex items-center justify-center mb-2">
+                  <Truck className="text-blue-600" size={28} />
+                </div>
+                <p className="text-sm font-semibold text-gray-700">Fast Delivery</p>
+              </div>
+              <div className="bg-white/80 backdrop-blur-sm rounded-xl p-4 shadow-md hover:shadow-xl transition-all duration-300 hover:scale-105">
+                <div className="flex items-center justify-center mb-2">
+                  <Shield className="text-green-600" size={28} />
+                </div>
+                <p className="text-sm font-semibold text-gray-700">Fully Insured</p>
+              </div>
+              <div className="bg-white/80 backdrop-blur-sm rounded-xl p-4 shadow-md hover:shadow-xl transition-all duration-300 hover:scale-105">
+                <div className="flex items-center justify-center mb-2">
+                  <Clock className="text-orange-600" size={28} />
+                </div>
+                <p className="text-sm font-semibold text-gray-700">24/7 Support</p>
+              </div>
+              <div className="bg-white/80 backdrop-blur-sm rounded-xl p-4 shadow-md hover:shadow-xl transition-all duration-300 hover:scale-105">
+                <div className="flex items-center justify-center mb-2">
+                  <Zap className="text-purple-600" size={28} />
+                </div>
+                <p className="text-sm font-semibold text-gray-700">Real-time Track</p>
+              </div>
+            </div>
+
+            <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in-up animation-delay-1000">
               <Link href="/contact" className="btn-primary btn-lg">
                 Get Started
                 <ArrowRight className="ml-2" size={20} />
@@ -155,6 +185,69 @@ export default function HomePage() {
                 </Link>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Stats Counter Section */}
+      <section className="py-20 bg-gradient-to-br from-blue-600 via-blue-700 to-blue-800 text-white relative overflow-hidden">
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute top-0 left-0 w-96 h-96 bg-white rounded-full blur-3xl"></div>
+          <div className="absolute bottom-0 right-0 w-96 h-96 bg-white rounded-full blur-3xl"></div>
+        </div>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">Our Achievements</h2>
+            <p className="text-blue-100 text-lg">Numbers that speak for themselves</p>
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+            <div className="text-center transform hover:scale-110 transition-transform duration-300">
+              <div className="mb-4">
+                <div className="inline-flex items-center justify-center w-20 h-20 bg-white/20 backdrop-blur-sm rounded-full mb-4">
+                  <Users size={40} className="text-white" />
+                </div>
+              </div>
+              <div className="text-4xl md:text-5xl font-bold mb-2">
+                <Counter end={1000} suffix="+" />
+              </div>
+              <p className="text-blue-100 font-medium">Happy Clients</p>
+            </div>
+
+            <div className="text-center transform hover:scale-110 transition-transform duration-300">
+              <div className="mb-4">
+                <div className="inline-flex items-center justify-center w-20 h-20 bg-white/20 backdrop-blur-sm rounded-full mb-4">
+                  <Package size={40} className="text-white" />
+                </div>
+              </div>
+              <div className="text-4xl md:text-5xl font-bold mb-2">
+                <Counter end={5000} suffix="+" />
+              </div>
+              <p className="text-blue-100 font-medium">Deliveries</p>
+            </div>
+
+            <div className="text-center transform hover:scale-110 transition-transform duration-300">
+              <div className="mb-4">
+                <div className="inline-flex items-center justify-center w-20 h-20 bg-white/20 backdrop-blur-sm rounded-full mb-4">
+                  <TrendingUp size={40} className="text-white" />
+                </div>
+              </div>
+              <div className="text-4xl md:text-5xl font-bold mb-2">
+                <Counter end={99} suffix="%" />
+              </div>
+              <p className="text-blue-100 font-medium">On-Time Rate</p>
+            </div>
+
+            <div className="text-center transform hover:scale-110 transition-transform duration-300">
+              <div className="mb-4">
+                <div className="inline-flex items-center justify-center w-20 h-20 bg-white/20 backdrop-blur-sm rounded-full mb-4">
+                  <Award size={40} className="text-white" />
+                </div>
+              </div>
+              <div className="text-4xl md:text-5xl font-bold mb-2">
+                <Counter end={24} suffix="/7" />
+              </div>
+              <p className="text-blue-100 font-medium">Support</p>
+            </div>
           </div>
         </div>
       </section>
