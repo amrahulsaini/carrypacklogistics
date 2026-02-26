@@ -27,6 +27,12 @@ export default function AdminPage() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [selectedLead, setSelectedLead] = useState<Lead | null>(null);
+  const [toast, setToast] = useState<{ message: string; type: 'success' | 'error' } | null>(null);
+
+  const showToast = (message: string, type: 'success' | 'error' = 'success') => {
+    setToast({ message, type });
+    setTimeout(() => setToast(null), 5000);
+  };
 
   const handleLogin = () => {
     if (password.trim()) {
@@ -83,10 +89,20 @@ export default function AdminPage() {
         throw new Error('Failed to update status');
       }
 
+      const data = await response.json();
+      
+      // Show success notification
+      if (newStatus !== 'new') {
+        showToast(`✅ Status updated & email sent to customer!`, 'success');
+      } else {
+        showToast(`✅ Status updated successfully!`, 'success');
+      }
+
       // Refresh leads
       fetchLeads(password);
     } catch (err: any) {
       setError(err.message || 'Failed to update status');
+      showToast(`❌ ${err.message || 'Failed to update status'}`, 'error');
     }
   };
 
@@ -234,6 +250,26 @@ export default function AdminPage() {
   return (
     <div className="min-h-screen bg-gray-50 pt-24 pb-8">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Toast Notification */}
+        {toast && (
+          <div className={`fixed top-20 right-4 z-50 px-6 py-4 rounded-lg shadow-2xl flex items-center gap-3 animate-slideIn ${
+            toast.type === 'success' ? 'bg-green-500 text-white' : 'bg-red-500 text-white'
+          }`}>
+            {toast.type === 'success' ? (
+              <CheckCircle size={24} />
+            ) : (
+              <AlertCircle size={24} />
+            )}
+            <span className="font-medium">{toast.message}</span>
+            <button
+              onClick={() => setToast(null)}
+              className="ml-4 hover:opacity-75"
+            >
+              ✕
+            </button>
+          </div>
+        )}
+
         {/* Header */}
         <div className="bg-white rounded-2xl shadow-md p-6 mb-6">
           <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
