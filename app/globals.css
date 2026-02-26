@@ -1,26 +1,536 @@
 @import "tailwindcss";
 
+/* ===========================
+   CSS Variables & Root Styles
+   =========================== */
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --primary: #2563eb;
+  --primary-dark: #1e40af;
+  --secondary: #64748b;
+  --accent: #3b82f6;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-inter);
+  --font-display: var(--font-poppins);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* ===========================
+   Base Styles
+   =========================== */
+* {
+  scroll-behavior: smooth;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-inter), system-ui, -apple-system, sans-serif;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-poppins), system-ui, -apple-system, sans-serif;
+}
+
+/* ===========================
+   Page Container
+   =========================== */
+.page-container {
+  min-height: 100vh;
+  padding-top: 80px;
+}
+
+/* ===========================
+   Typography
+   =========================== */
+.section-title {
+  @apply text-3xl md:text-4xl font-bold text-gray-900 mb-4;
+}
+
+.section-subtitle {
+  @apply text-lg text-gray-600 max-w-2xl mx-auto;
+}
+
+/* ===========================
+   Button Styles
+   =========================== */
+.btn-primary {
+  @apply inline-flex items-center justify-center px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg 
+         hover:bg-blue-700 transition-all duration-300 shadow-md hover:shadow-lg 
+         transform hover:-translate-y-0.5 active:translate-y-0;
+}
+
+.btn-secondary {
+  @apply inline-flex items-center justify-center px-6 py-3 bg-gray-200 text-gray-800 font-semibold rounded-lg 
+         hover:bg-gray-300 transition-all duration-300 shadow-sm hover:shadow-md 
+         transform hover:-translate-y-0.5 active:translate-y-0;
+}
+
+.btn-white {
+  @apply inline-flex items-center justify-center px-6 py-3 bg-white text-blue-600 font-semibold rounded-lg 
+         hover:bg-gray-50 transition-all duration-300 shadow-md hover:shadow-lg 
+         transform hover:-translate-y-0.5 active:translate-y-0;
+}
+
+.btn-outline-white {
+  @apply inline-flex items-center justify-center px-6 py-3 bg-transparent text-white font-semibold rounded-lg 
+         border-2 border-white hover:bg-white hover:text-blue-600 transition-all duration-300 
+         transform hover:-translate-y-0.5 active:translate-y-0;
+}
+
+.btn-lg {
+  @apply px-8 py-4 text-lg;
+}
+
+/* Enhanced Button with Cool Effects */
+.btn-primary-enhanced {
+  @apply inline-flex items-center justify-center px-6 py-3 bg-gradient-to-r from-blue-600 to-blue-700 
+         text-white font-semibold rounded-lg hover:from-blue-700 hover:to-blue-800 
+         transition-all duration-300 shadow-md hover:shadow-xl 
+         transform hover:-translate-y-1 hover:scale-105 active:translate-y-0 active:scale-100
+         relative overflow-hidden;
+}
+
+.btn-primary-enhanced::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+.btn-primary-enhanced:hover::before {
+  width: 300px;
+  height: 300px;
+}
+
+/* ===========================
+   Navigation Styles
+   =========================== */
+.nav-link {
+  @apply text-gray-700 font-medium hover:text-blue-600 transition-colors duration-200 
+         relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 
+         after:bg-blue-600 after:transition-all after:duration-300 hover:after:w-full;
+}
+
+/* Enhanced Navigation Link */
+.nav-link-enhanced {
+  @apply text-gray-700 font-semibold hover:text-blue-600 transition-all duration-300 
+         relative px-2 py-1;
+  position: relative;
+}
+
+.nav-link-enhanced::before {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #2563eb, #3b82f6);
+  transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 2px;
+}
+
+.nav-link-enhanced:hover::before {
+  width: 100%;
+}
+
+.nav-link-enhanced::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -10px;
+  right: -10px;
+  bottom: 0;
+  background: rgba(59, 130, 246, 0.05);
+  border-radius: 8px;
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+  z-index: -1;
+}
+
+.nav-link-enhanced:hover::after {
+  transform: scaleX(1);
+}
+
+.mobile-nav-link {
+  @apply block px-4 py-3 text-gray-700 font-medium hover:bg-gray-100 hover:text-blue-600 
+         rounded-lg transition-all duration-200;
+}
+
+/* Enhanced Mobile Nav Link */
+.mobile-nav-link-enhanced {
+  @apply block px-4 py-3 text-gray-700 font-medium hover:bg-gradient-to-r hover:from-blue-50 
+         hover:to-blue-100 hover:text-blue-600 rounded-lg transition-all duration-300 
+         transform hover:translate-x-2 hover:scale-105 active:scale-100
+         border-l-4 border-transparent hover:border-blue-600;
+}
+
+/* ===========================
+   Footer Styles
+   =========================== */
+.footer-link {
+  @apply text-gray-400 hover:text-white transition-all duration-300 text-sm;
+  position: relative;
+  display: inline-block;
+}
+
+.footer-link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: white;
+  transition: width 0.3s ease;
+}
+
+.footer-link:hover::after {
+  width: 100%;
+}
+
+.social-icon {
+  @apply w-10 h-10 rounded-full bg-gray-800 hover:bg-blue-600 flex items-center justify-center 
+         transition-all duration-300 transform hover:scale-125 hover:rotate-12;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.social-icon:hover {
+  box-shadow: 0 8px 20px rgba(59, 130, 246, 0.4);
+}
+
+/* ===========================
+   Hero Section
+   =========================== */
+.hero-section {
+  background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 50%, #bae6fd 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at 30% 50%, rgba(59, 130, 246, 0.1) 0%, transparent 50%),
+              radial-gradient(circle at 70% 80%, rgba(147, 197, 253, 0.1) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+/* ===========================
+   Service Cards
+   =========================== */
+.service-card {
+  @apply bg-white p-8 rounded-2xl shadow-md hover:shadow-2xl transition-all duration-500 
+         transform hover:-translate-y-3 border border-gray-100 hover:border-blue-200;
+  animation: fadeInUp 0.6s ease-out forwards;
+  opacity: 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.service-card::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(59, 130, 246, 0.1) 0%, transparent 70%);
+  transform: scale(0);
+  transition: transform 0.6s ease-out;
+}
+
+.service-card:hover::before {
+  transform: scale(1);
+}
+
+.service-card:hover {
+  box-shadow: 0 20px 40px rgba(59, 130, 246, 0.15);
+}
+
+.service-icon {
+  @apply w-16 h-16 bg-blue-100 rounded-xl flex items-center justify-center text-blue-600 mb-4 
+         transition-all duration-500;
+  position: relative;
+}
+
+.service-card:hover .service-icon {
+  transform: scale(1.15) rotate(5deg);
+  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+  color: white;
+  box-shadow: 0 8px 20px rgba(59, 130, 246, 0.3);
+}
+
+/* ===========================
+   Form Styles
+   =========================== */
+.input-field {
+  @apply w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 
+         focus:border-transparent transition-all duration-300 outline-none;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.input-field:hover {
+  @apply border-gray-400;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  transform: translateY(-1px);
+}
+
+.input-field:focus {
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.15);
+  transform: translateY(-1px);
+}
+
+/* ===========================
+   Animations
+   =========================== */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes pulse-slow {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+@keyframes bounce-gentle {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-shimmer {
+  animation: shimmer 3s linear infinite;
+}
+
+.animate-bounce-gentle {
+  animation: bounce-gentle 2s ease-in-out infinite;
+}
+
+.animation-delay-200 {
+  animation-delay: 0.2s;
+}
+
+.animation-delay-400 {
+  animation-delay: 0.4s;
+}
+
+.animation-delay-600 {
+  animation-delay: 0.6s;
+}
+
+.animation-delay-800 {
+  animation-delay: 0.8s;
+}
+
+/* ===========================
+   Loading Spinner
+   =========================== */
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+
+/* ===========================
+   Transitions
+   =========================== */
+.transition-smooth {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.transition-bounce {
+  transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+/* ===========================
+   Hover Effects
+   =========================== */
+.hover-lift {
+  @apply transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg;
+}
+
+.hover-glow {
+  transition: all 0.3s ease;
+}
+
+.hover-glow:hover {
+  box-shadow: 0 0 20px rgba(59, 130, 246, 0.4), 0 0 40px rgba(59, 130, 246, 0.2);
+  transform: scale(1.02);
+}
+
+.hover-scale {
+  @apply transition-transform duration-300 ease-out;
+}
+
+.hover-scale:hover {
+  transform: scale(1.05);
+}
+
+.hover-rotate {
+  @apply transition-transform duration-300 ease-out;
+}
+
+.hover-rotate:hover {
+  transform: rotate(3deg) scale(1.05);
+}
+
+/* Card Hover Effects */
+.card-interactive {
+  @apply transition-all duration-400;
+  position: relative;
+}
+
+.card-interactive::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 2px;
+  background: linear-gradient(135deg, #3b82f6, #2563eb, #1e40af);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.card-interactive:hover::before {
+  opacity: 1;
+}
+
+/* ===========================
+   Utility Classes
+   =========================== */
+.text-gradient {
+  background: linear-gradient(135deg, #2563eb 0%, #3b82f6 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.bg-gradient-primary {
+  background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
+}
+
+/* ===========================
+   Responsive Adjustments
+   =========================== */
+@media (max-width: 768px) {
+  .page-container {
+    padding-top: 80px;
+  }
+  
+  .section-title {
+    @apply text-2xl md:text-3xl;
+  }
+}
+
+/* ===========================
+   Smooth Scrolling for Anchors
+   =========================== */
+html {
+  scroll-padding-top: 100px;
+}
+
+/* ===========================
+   Selection Styling
+   =========================== */
+::selection {
+  background-color: #3b82f6;
+  color: white;
+}
+
+::-moz-selection {
+  background-color: #3b82f6;
+  color: white;
+}
+
+/* ===========================
+   Scrollbar Styling
+   =========================== */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* ===========================
+   Focus Visible (Accessibility)
+   =========================== */
+*:focus-visible {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
 }
