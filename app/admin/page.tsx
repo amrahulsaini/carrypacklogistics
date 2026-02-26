@@ -1,7 +1,11 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Lock, Eye, RefreshCw, Calendar, Mail, Phone, MapPin, MessageSquare, CheckCircle, Clock, AlertCircle } from 'lucide-react';
+import { Lock, Eye, RefreshCw, Calendar, Mail, Phone, MapPin, MessageSquare, CheckCircle, Clock, AlertCircle, Download, FileText, Table2, FileSpreadsheet } from 'lucide-react';
+import jsPDF from 'jspdf';
+import autoTable from 'jspdf-autotable';
+import * as XLSX from 'xlsx';
+import Papa from 'papaparse';
 
 interface Lead {
   id: number;
@@ -86,6 +90,87 @@ export default function AdminPage() {
     }
   };
 
+  const exportToPDF = () => {
+    const doc = new jsPDF();
+    
+    // Title
+    doc.setFontSize(18);
+    doc.text('Carry Pack Logistics - Leads Report', 14, 20);
+    
+    doc.setFontSize(11);
+    doc.text(`Generated: ${new Date().toLocaleString()}`, 14, 28);
+    doc.text(`Total Leads: ${leads.length}`, 14, 34);
+    
+    // Table
+    const tableData = leads.map(lead => [
+      lead.name,
+      lead.contact_number,
+      lead.email,
+      `${lead.moving_from} → ${lead.moving_to}`,
+      new Date(lead.moving_date).toLocaleDateString(),
+      lead.status,
+      new Date(lead.created_at).toLocaleDateString()
+    ]);
+    
+    autoTable(doc, {
+      startY: 40,
+      head: [['Name', 'Phone', 'Email', 'Route', 'Moving Date', 'Status', 'Created']],
+      body: tableData,
+      theme: 'grid',
+      styles: { fontSize: 8 },
+      headStyles: { fillColor: [37, 99, 235] }
+    });
+    
+    doc.save(`leads-${new Date().toISOString().split('T')[0]}.pdf`);
+  };
+
+  const exportToExcel = () => {
+    const worksheetData = leads.map(lead => ({
+      'Name': lead.name,
+      'Contact Number': lead.contact_number,
+      'Email': lead.email,
+      'Moving From': lead.moving_from,
+      'Moving To': lead.moving_to,
+      'Moving Date': new Date(lead.moving_date).toLocaleDateString(),
+      'Message': lead.message || '',
+      'Status': lead.status,
+      'Created At': new Date(lead.created_at).toLocaleString()
+    }));
+    
+    const worksheet = XLSX.utils.json_to_sheet(worksheetData);
+    const workbook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(workbook, worksheet, 'Leads');
+    
+    // Set column widths
+    worksheet['!cols'] = [
+      { wch: 20 }, { wch: 15 }, { wch: 25 }, { wch: 20 }, 
+      { wch: 20 }, { wch: 12 }, { wch: 30 }, { wch: 12 }, { wch: 20 }
+    ];
+    
+    XLSX.writeFile(workbook, `leads-${new Date().toISOString().split('T')[0]}.xlsx`);
+  };
+
+  const exportToCSV = () => {
+    const csvData = leads.map(lead => ({
+      'Name': lead.name,
+      'Contact Number': lead.contact_number,
+      'Email': lead.email,
+      'Moving From': lead.moving_from,
+      'Moving To': lead.moving_to,
+      'Moving Date': new Date(lead.moving_date).toLocaleDateString(),
+      'Message': lead.message || '',
+      'Status': lead.status,
+      'Created At': new Date(lead.created_at).toLocaleString()
+    }));
+    
+    const csv = Papa.unparse(csvData);
+    const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download = `leads-${new Date().toISOString().split('T')[0]}.csv`;
+    link.click();
+  };
+
   const getStatusBadge = (status: string) => {
     const statusColors: { [key: string]: string } = {
       new: 'bg-blue-100 text-blue-800',
@@ -147,22 +232,48 @@ export default function AdminPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 py-8">
+    <div className="min-h-screen bg-gray-50 pt-24 pb-8">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="bg-white rounded-2xl shadow-md p-6 mb-6">
-          <div className="flex justify-between items-center">
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
             <div>
               <h1 className="text-3xl font-bold text-gray-900">Lead Management</h1>
               <p className="text-gray-600 mt-1">Total Leads: {leads.length}</p>
             </div>
-            <button
-              onClick={() => fetchLeads(password)}
-              className="btn-secondary inline-flex items-center"
-            >
-              <RefreshCw size={20} className="mr-2" />
-              Refresh
-            </button>
+            <div className="flex flex-wrap gap-2">
+              <button
+                onClick={exportToPDF}
+                className="btn-secondary inline-flex items-center text-sm"
+                title="Export to PDF"
+              >
+                <FileText size={18} className="mr-2" />
+                PDF
+              </button>
+              <button
+                onClick={exportToExcel}
+                className="btn-secondary inline-flex items-center text-sm"
+                title="Export to Excel"
+              >
+                <FileSpreadsheet size={18} className="mr-2" />
+                Excel
+              </button>
+              <button
+                onClick={exportToCSV}
+                className="btn-secondary inline-flex items-center text-sm"
+                title="Export to CSV"
+              >
+                <Table2 size={18} className="mr-2" />
+                CSV
+              </button>
+              <button
+                onClick={() => fetchLeads(password)}
+                className="btn-primary inline-flex items-center text-sm"
+              >
+                <RefreshCw size={18} className="mr-2" />
+                Refresh
+              </button>
+            </div>
           </div>
         </div>
 

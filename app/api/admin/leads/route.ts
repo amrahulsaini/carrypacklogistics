@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { sql, initDatabase } from '@/lib/db';
+import { sendStatusUpdateEmail } from '@/lib/email';
 
 export async function GET(request: NextRequest) {
   try {
@@ -65,8 +66,26 @@ export async function PATCH(request: NextRequest) {
       RETURNING *
     `;
 
+    const updatedLead = result.rows[0];
+
+    // Send status update email to customer (async, don't block response)
+    if (updatedLead && updatedLead.status !== 'new') {
+      sendStatusUpdateEmail({
+        name: updatedLead.name,
+        contactNumber: updatedLead.contact_number,
+        email: updatedLead.email,
+        movingFrom: updatedLead.moving_from,
+        movingTo: updatedLead.moving_to,
+        movingDate: updatedLead.moving_date,
+        status: updatedLead.status,
+      }).catch(error => {
+        console.error('Failed to send status update email:', error);
+        // Don't fail the request if email fails
+      });
+    }
+
     return NextResponse.json(
-      { message: 'Lead updated successfully', lead: result.rows[0] },
+      { message: 'Lead updated successfully', lead: updatedLead },
       { status: 200 }
     );
   } catch (error) {

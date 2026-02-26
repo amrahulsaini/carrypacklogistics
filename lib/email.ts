@@ -177,3 +177,103 @@ export async function sendLeadNotification(leadData: LeadData) {
     throw error;
   }
 }
+
+export async function sendStatusUpdateEmail(leadData: LeadData & { status: string }) {
+  const { name, email, movingFrom, movingTo, movingDate, status } = leadData;
+
+  const statusMessages: { [key: string]: { title: string; message: string; color: string } } = {
+    contacted: {
+      title: 'We\'ve Received Your Request',
+      message: 'Our team has reviewed your moving request and will contact you shortly to discuss the details.',
+      color: '#eab308'
+    },
+    quoted: {
+      title: 'Your Quote is Ready',
+      message: 'We\'ve prepared a customized quote for your move. Our team will share the details with you soon.',
+      color: '#a855f7'
+    },
+    confirmed: {
+      title: 'Booking Confirmed!',
+      message: 'Great news! Your move has been confirmed. We\'re preparing everything for a smooth relocation.',
+      color: '#22c55e'
+    },
+    completed: {
+      title: 'Move Completed Successfully',
+      message: 'Thank you for choosing Carry Pack Logistics! We hope your move went smoothly. We\'d love to hear your feedback.',
+      color: '#6b7280'
+    },
+    cancelled: {
+      title: 'Booking Cancelled',
+      message: 'Your moving request has been cancelled as requested. Feel free to reach out if you need our services in the future.',
+      color: '#ef4444'
+    }
+  };
+
+  const statusInfo = statusMessages[status] || statusMessages.contacted;
+
+  const customerMailOptions = {
+    from: '"Carry Pack Logistics" <sales@carrypacklogistics.com>',
+    to: email,
+    subject: `Update: ${statusInfo.title} - Carry Pack Logistics`,
+    html: `
+      <!DOCTYPE html>
+      <html>
+      <head>
+        <style>
+          body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
+          .container { max-width: 600px; margin: 0 auto; padding: 20px; }
+          .header { background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%); color: white; padding: 30px; text-align: center; border-radius: 10px 10px 0 0; }
+          .content { background: #f9fafb; padding: 30px; border-radius: 0 0 10px 10px; }
+          .status-badge { display: inline-block; padding: 10px 20px; background: ${statusInfo.color}; color: white; border-radius: 25px; font-weight: bold; margin: 20px 0; }
+          .detail-row { margin: 15px 0; padding: 10px; background: white; border-radius: 5px; }
+          .label { font-weight: bold; color: #2563eb; }
+          .footer { text-align: center; margin-top: 30px; padding: 20px; color: #666; }
+        </style>
+      </head>
+      <body>
+        <div class="container">
+          <div class="header">
+            <h1>Carry Pack Logistics</h1>
+            <p>Structured Logistics. Transparent Commitments. Premium Execution.</p>
+          </div>
+          <div class="content">
+            <h2>${statusInfo.title}</h2>
+            <div class="status-badge">Status: ${status.charAt(0).toUpperCase() + status.slice(1)}</div>
+            
+            <p>Dear ${name},</p>
+            <p>${statusInfo.message}</p>
+            
+            <h3>Your Move Details:</h3>
+            <div class="detail-row">
+              <span class="label">Moving From:</span> ${movingFrom}
+            </div>
+            <div class="detail-row">
+              <span class="label">Moving To:</span> ${movingTo}
+            </div>
+            <div class="detail-row">
+              <span class="label">Moving Date:</span> ${movingDate}
+            </div>
+            
+            <p><strong>Questions or concerns?</strong><br>
+            📧 Email: sales@carrypacklogistics.com<br>
+            📞 Phone: +91 89494 37619</p>
+          </div>
+          <div class="footer">
+            <p>Office No.223, Bijal Business Centre, Aslali Circle, Ahmedabad</p>
+            <p>&copy; ${new Date().getFullYear()} Carry Pack Logistics. All rights reserved.</p>
+          </div>
+        </div>
+      </body>
+      </html>
+    `,
+  };
+
+  try {
+    await transporter.sendMail(customerMailOptions);
+    console.log('Status update email sent successfully to:', email);
+    return { success: true };
+  } catch (error) {
+    console.error('Error sending status update email:', error);
+    throw error;
+  }
+}
