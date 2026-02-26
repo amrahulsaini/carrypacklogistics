@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { Truck, Package, Warehouse, Car, Bike, Home, ArrowRight, CheckCircle, Clock, Shield, Users, Award, TrendingUp, Zap } from 'lucide-react';
+import { Truck, Package, Warehouse, Car, Bike, Home, ArrowRight, CheckCircle, Clock, Shield, Users, Award, TrendingUp } from 'lucide-react';
 import Counter from './components/Counter';
 
 export default function HomePage() {
@@ -8,274 +8,206 @@ export default function HomePage() {
     {
       id: 'separate-vehicle',
       icon: Truck,
-      title: 'Separate Vehicle Service',
-      description: 'Dedicated vehicles for your exclusive cargo needs. Perfect for large shipments requiring privacy and security.',
-      features: ['Exclusive use', 'Direct delivery', 'Premium security']
+      title: 'Separate Vehicle',
+      description: 'Dedicated vehicles for your exclusive cargo — privacy, security, direct delivery.',
     },
     {
       id: 'sharing-vehicle',
       icon: Package,
-      title: 'Sharing Vehicle Service',
-      description: 'Cost-effective shared transportation solutions for smaller loads without compromising on quality.',
-      features: ['Cost-efficient', 'Scheduled routes', 'Reliable service']
+      title: 'Sharing Vehicle',
+      description: 'Cost-effective shared transportation for smaller loads, same quality standard.',
     },
     {
       id: 'warehouse',
       icon: Warehouse,
       title: 'Warehouse Solutions',
-      description: 'State-of-the-art storage facilities with 24/7 security and inventory management systems.',
-      features: ['Climate controlled', 'Security monitored', 'Flexible terms']
+      description: 'Secure storage with 24/7 monitoring and flexible inventory management.',
     },
     {
       id: 'car-transport',
       icon: Car,
       title: 'Car Transport',
-      description: 'Safe and secure vehicle transportation with specialized carriers and comprehensive insurance.',
-      features: ['Door-to-door', 'Insured transit', 'Professional handling']
+      description: 'Specialized carriers with comprehensive insurance for safe vehicle transit.',
     },
     {
       id: 'bike-transport',
       icon: Bike,
       title: 'Bike Transport',
-      description: 'Specialized motorcycle and bike transportation services with expert handling and care.',
-      features: ['Protective packaging', 'Swift delivery', 'Damage protection']
+      description: 'Expert motorcycle packaging and transportation with damage protection.',
     },
     {
       id: 'door-to-door',
       icon: Home,
-      title: 'Door-to-Door Service',
-      description: 'Complete end-to-end logistics solutions from pickup to delivery at your doorstep.',
-      features: ['Complete tracking', 'Hassle-free', 'Timely delivery']
-    }
-  ];
-
-  const whyChooseUs = [
-    {
-      icon: Clock,
-      title: 'On-Time Delivery',
-      description: 'We value your time and ensure punctual deliveries every time.'
-    },
-    {
-      icon: Shield,
-      title: 'Safe & Secure',
-      description: 'Your cargo is protected with our comprehensive insurance coverage.'
-    },
-    {
-      icon: Users,
-      title: 'Professional Team',
-      description: 'Experienced logistics professionals dedicated to your satisfaction.'
-    },
-    {
-      icon: CheckCircle,
-      title: 'Transparent Pricing',
-      description: 'No hidden costs. Clear, upfront pricing for all our services.'
+      title: 'Door-to-Door',
+      description: 'Complete end-to-end logistics from pickup to doorstep delivery.',
     }
   ];
 
   return (
     <div className="page-container">
       {/* Hero Section */}
-      <section className="hero-section">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-32">
-          <div className="text-center">
-            <div className="mb-8 flex justify-center">
-              <div className="relative w-32 h-32 animate-float rounded-full bg-white shadow-2xl overflow-hidden border-4 border-blue-200">
-                <Image
-                  src="/logo-carry.webp"
-                  alt="Carry Pack Logistics"
-                  fill
-                  className="object-cover p-3"
-                  priority
-                />
+      <section className="hero-section relative">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 lg:py-36">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            {/* Left — Copy */}
+            <div>
+              <p className="section-label animate-fade-in-up">Logistics Partner in Ahmedabad</p>
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-[#1a365d] leading-[1.1] mb-6 animate-fade-in-up animation-delay-200" style={{ letterSpacing: '-0.04em' }}>
+                Move with<br />
+                <span className="text-[#c8a951]">confidence.</span>
+              </h1>
+              <p className="text-lg text-gray-500 leading-relaxed mb-8 max-w-md animate-fade-in-up animation-delay-400">
+                Structured logistics, transparent commitments, and premium execution — from Ahmedabad to anywhere in India.
+              </p>
+              <div className="flex flex-wrap gap-3 animate-fade-in-up animation-delay-600">
+                <Link href="/get-quote" className="btn-primary btn-lg group">
+                  Get a Quote
+                  <ArrowRight size={18} className="ml-2 transition-transform group-hover:translate-x-1" />
+                </Link>
+                <Link href="/services" className="btn-secondary btn-lg">
+                  Our Services
+                </Link>
               </div>
-            </div>
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900 mb-6 animate-fade-in-up">
-              Carry Pack Logistics
-            </h1>
-            <p className="text-xl md:text-2xl text-gray-700 mb-4 font-medium animate-fade-in-up animation-delay-200">
-              Structured Logistics. Transparent Commitments.
-            </p>
-            <p className="text-2xl md:text-3xl text-blue-600 font-semibold mb-8 animate-fade-in-up animation-delay-400">
-              Premium Execution.
-            </p>
-            <p className="text-lg text-gray-600 mb-6 max-w-3xl mx-auto animate-fade-in-up animation-delay-600">
-              Your trusted partner for comprehensive logistics solutions in Ahmedabad. From transportation to warehousing, we deliver excellence at every step.
-            </p>
-            
-            {/* Added Hero Features */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto mb-10 animate-fade-in-up animation-delay-800">
-              <div className="bg-white/80 backdrop-blur-sm rounded-xl p-4 shadow-md hover:shadow-xl transition-all duration-300 hover:scale-105">
-                <div className="flex items-center justify-center mb-2">
-                  <Truck className="text-blue-600" size={28} />
+
+              {/* Trust signals */}
+              <div className="mt-12 flex items-center gap-8 animate-fade-in-up animation-delay-800">
+                <div>
+                  <div className="text-2xl font-bold text-[#1a365d]"><Counter end={1000} suffix="+" /></div>
+                  <div className="text-xs text-gray-400 uppercase tracking-wider">Clients</div>
                 </div>
-                <p className="text-sm font-semibold text-gray-700">Fast Delivery</p>
-              </div>
-              <div className="bg-white/80 backdrop-blur-sm rounded-xl p-4 shadow-md hover:shadow-xl transition-all duration-300 hover:scale-105">
-                <div className="flex items-center justify-center mb-2">
-                  <Shield className="text-green-600" size={28} />
+                <div className="w-px h-10 bg-gray-200"></div>
+                <div>
+                  <div className="text-2xl font-bold text-[#1a365d]"><Counter end={5000} suffix="+" /></div>
+                  <div className="text-xs text-gray-400 uppercase tracking-wider">Deliveries</div>
                 </div>
-                <p className="text-sm font-semibold text-gray-700">Fully Insured</p>
-              </div>
-              <div className="bg-white/80 backdrop-blur-sm rounded-xl p-4 shadow-md hover:shadow-xl transition-all duration-300 hover:scale-105">
-                <div className="flex items-center justify-center mb-2">
-                  <Clock className="text-orange-600" size={28} />
+                <div className="w-px h-10 bg-gray-200"></div>
+                <div>
+                  <div className="text-2xl font-bold text-[#1a365d]"><Counter end={99} suffix="%" /></div>
+                  <div className="text-xs text-gray-400 uppercase tracking-wider">On-time</div>
                 </div>
-                <p className="text-sm font-semibold text-gray-700">24/7 Support</p>
-              </div>
-              <div className="bg-white/80 backdrop-blur-sm rounded-xl p-4 shadow-md hover:shadow-xl transition-all duration-300 hover:scale-105">
-                <div className="flex items-center justify-center mb-2">
-                  <Zap className="text-purple-600" size={28} />
-                </div>
-                <p className="text-sm font-semibold text-gray-700">Real-time Track</p>
               </div>
             </div>
 
-            <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in-up animation-delay-1000">
-              <Link href="/contact" className="btn-primary btn-lg">
-                Get Started
-                <ArrowRight className="ml-2" size={20} />
-              </Link>
-              <Link href="/services" className="btn-secondary btn-lg">
-                Explore Services
-              </Link>
+            {/* Right — Logo / Visual */}
+            <div className="hidden lg:flex justify-center">
+              <div className="relative">
+                <div className="w-72 h-72 rounded-3xl bg-gradient-to-br from-[#1a365d] to-[#2a4a7f] flex items-center justify-center shadow-2xl shadow-[#1a365d]/20">
+                  <div className="relative w-40 h-40 rounded-full bg-white overflow-hidden">
+                    <Image
+                      src="/logo-carry.webp"
+                      alt="Carry Pack Logistics"
+                      fill
+                      className="object-cover p-4"
+                      priority
+                    />
+                  </div>
+                </div>
+                {/* Decorative accent */}
+                <div className="absolute -bottom-4 -right-4 w-24 h-24 rounded-2xl bg-[#c8a951]/10 border border-[#c8a951]/20"></div>
+                <div className="absolute -top-4 -left-4 w-16 h-16 rounded-xl bg-[#1a365d]/5 border border-[#1a365d]/10"></div>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
       {/* Services Section */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="section-title">Our Services</h2>
-            <p className="section-subtitle">
-              Comprehensive logistics solutions tailored to your needs
-            </p>
+          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-16">
+            <div>
+              <p className="section-label">What We Do</p>
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900" style={{ letterSpacing: '-0.03em' }}>
+                Comprehensive logistics<br className="hidden sm:block" /> solutions
+              </h2>
+            </div>
+            <Link href="/services" className="text-[#1a365d] font-medium text-sm inline-flex items-center hover:underline underline-offset-4 group">
+              View all services
+              <ArrowRight size={14} className="ml-1 transition-transform group-hover:translate-x-1" />
+            </Link>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {services.map((service, index) => (
-              <div
+              <Link
                 key={service.id}
-                className="service-card"
-                style={{ animationDelay: `${index * 100}ms` }}
+                href={`/services#${service.id}`}
+                className="service-card group"
+                style={{ animationDelay: `${index * 80}ms` }}
               >
                 <div className="service-icon">
-                  <service.icon size={32} />
+                  <service.icon size={24} />
                 </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-3">
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">
                   {service.title}
                 </h3>
-                <p className="text-gray-600 mb-4">
+                <p className="text-sm text-gray-500 leading-relaxed mb-4">
                   {service.description}
                 </p>
-                <ul className="space-y-2 mb-4">
-                  {service.features.map((feature, idx) => (
-                    <li key={idx} className="flex items-center text-sm text-gray-700">
-                      <CheckCircle size={16} className="text-green-500 mr-2 flex-shrink-0" />
-                      {feature}
-                    </li>
-                  ))}
-                </ul>
-                <Link
-                  href={`/services#${service.id}`}
-                  className="text-blue-600 hover:text-blue-700 font-medium inline-flex items-center group"
-                >
-                  Learn More
-                  <ArrowRight size={16} className="ml-1 group-hover:translate-x-1 transition-transform" />
-                </Link>
-              </div>
+                <span className="text-sm font-medium text-[#1a365d] inline-flex items-center">
+                  Learn more
+                  <ArrowRight size={14} className="ml-1 transition-transform group-hover:translate-x-1" />
+                </span>
+              </Link>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Stats Counter Section */}
-      <section className="py-20 bg-gradient-to-br from-blue-600 via-blue-700 to-blue-800 text-white relative overflow-hidden">
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-0 left-0 w-96 h-96 bg-white rounded-full blur-3xl"></div>
-          <div className="absolute bottom-0 right-0 w-96 h-96 bg-white rounded-full blur-3xl"></div>
-        </div>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Our Achievements</h2>
-            <p className="text-blue-100 text-lg">Numbers that speak for themselves</p>
-          </div>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            <div className="text-center transform hover:scale-110 transition-transform duration-300">
-              <div className="mb-4">
-                <div className="inline-flex items-center justify-center w-20 h-20 bg-white/20 backdrop-blur-sm rounded-full mb-4">
-                  <Users size={40} className="text-white" />
-                </div>
-              </div>
-              <div className="text-4xl md:text-5xl font-bold mb-2">
-                <Counter end={1000} suffix="+" />
-              </div>
-              <p className="text-blue-100 font-medium">Happy Clients</p>
+      {/* Why Choose Us — Horizontal layout */}
+      <section className="py-24 bg-[#fafafa]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-5 gap-12 items-start">
+            {/* Left column */}
+            <div className="lg:col-span-2">
+              <p className="section-label">Why Carry Pack</p>
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4" style={{ letterSpacing: '-0.03em' }}>
+                Built on trust,<br />driven by results
+              </h2>
+              <p className="text-gray-500 leading-relaxed mb-6">
+                We don&apos;t just move goods — we build lasting partnerships through transparent operations and consistent delivery performance.
+              </p>
+              <Link href="/about" className="text-[#1a365d] font-medium text-sm inline-flex items-center hover:underline underline-offset-4 group">
+                Learn about us
+                <ArrowRight size={14} className="ml-1 transition-transform group-hover:translate-x-1" />
+              </Link>
             </div>
 
-            <div className="text-center transform hover:scale-110 transition-transform duration-300">
-              <div className="mb-4">
-                <div className="inline-flex items-center justify-center w-20 h-20 bg-white/20 backdrop-blur-sm rounded-full mb-4">
-                  <Package size={40} className="text-white" />
+            {/* Right — Feature grid */}
+            <div className="lg:col-span-3 grid sm:grid-cols-2 gap-6">
+              {[
+                { icon: Clock, title: 'On-Time Delivery', desc: 'We value your schedule. 99% of our deliveries arrive on or before the committed time.' },
+                { icon: Shield, title: 'Fully Insured', desc: 'Comprehensive coverage on every shipment. Your goods are protected door to door.' },
+                { icon: Users, title: 'Professional Team', desc: 'Experienced logistics professionals trained for careful handling and execution.' },
+                { icon: CheckCircle, title: 'Transparent Pricing', desc: 'No hidden costs. Clear, upfront rates so you know exactly what to expect.' },
+              ].map((item, i) => (
+                <div key={i} className="bg-white p-6 rounded-xl border border-gray-100 hover:border-[#c8a951]/30 transition-colors">
+                  <item.icon size={20} className="text-[#c8a951] mb-4" />
+                  <h3 className="text-base font-semibold text-gray-900 mb-2">{item.title}</h3>
+                  <p className="text-sm text-gray-500 leading-relaxed">{item.desc}</p>
                 </div>
-              </div>
-              <div className="text-4xl md:text-5xl font-bold mb-2">
-                <Counter end={5000} suffix="+" />
-              </div>
-              <p className="text-blue-100 font-medium">Deliveries</p>
-            </div>
-
-            <div className="text-center transform hover:scale-110 transition-transform duration-300">
-              <div className="mb-4">
-                <div className="inline-flex items-center justify-center w-20 h-20 bg-white/20 backdrop-blur-sm rounded-full mb-4">
-                  <TrendingUp size={40} className="text-white" />
-                </div>
-              </div>
-              <div className="text-4xl md:text-5xl font-bold mb-2">
-                <Counter end={99} suffix="%" />
-              </div>
-              <p className="text-blue-100 font-medium">On-Time Rate</p>
-            </div>
-
-            <div className="text-center transform hover:scale-110 transition-transform duration-300">
-              <div className="mb-4">
-                <div className="inline-flex items-center justify-center w-20 h-20 bg-white/20 backdrop-blur-sm rounded-full mb-4">
-                  <Award size={40} className="text-white" />
-                </div>
-              </div>
-              <div className="text-4xl md:text-5xl font-bold mb-2">
-                <Counter end={24} suffix="/7" />
-              </div>
-              <p className="text-blue-100 font-medium">Support</p>
+              ))}
             </div>
           </div>
         </div>
       </section>
 
-      {/* Why Choose Us Section */}
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="section-title">Why Choose Us</h2>
-            <p className="section-subtitle">
-              Excellence in logistics, commitment to your success
-            </p>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {whyChooseUs.map((item, index) => (
-              <div
-                key={index}
-                className="text-center p-6 rounded-xl hover:bg-gray-50 transition-all duration-300"
-              >
-                <div className="inline-flex items-center justify-center w-16 h-16 bg-blue-100 rounded-full mb-4">
-                  <item.icon size={32} className="text-blue-600" />
+      {/* Stats Bar — Minimal */}
+      <section className="bg-[#1a365d] text-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+            {[
+              { icon: Users, end: 1000, suffix: '+', label: 'Happy Clients' },
+              { icon: Package, end: 5000, suffix: '+', label: 'Deliveries' },
+              { icon: TrendingUp, end: 99, suffix: '%', label: 'On-Time Rate' },
+              { icon: Award, end: 24, suffix: '/7', label: 'Support' },
+            ].map((stat, i) => (
+              <div key={i}>
+                <stat.icon size={24} className="mx-auto mb-3 text-[#c8a951]" />
+                <div className="text-3xl md:text-4xl font-bold mb-1">
+                  <Counter end={stat.end} suffix={stat.suffix} />
                 </div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                  {item.title}
-                </h3>
-                <p className="text-gray-600 text-sm">
-                  {item.description}
-                </p>
+                <div className="text-sm text-gray-400">{stat.label}</div>
               </div>
             ))}
           </div>
@@ -283,24 +215,23 @@ export default function HomePage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-blue-600 to-blue-800 text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">
-            Ready to Streamline Your Logistics?
+      <section className="py-24 bg-white">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <p className="section-label">Get Started</p>
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4" style={{ letterSpacing: '-0.03em' }}>
+            Ready to streamline your logistics?
           </h2>
-          <p className="text-xl mb-8 text-blue-100">
-            Get in touch with us today for a customized solution
+          <p className="text-gray-500 mb-8 max-w-xl mx-auto">
+            Tell us about your requirements and our team will craft a tailored solution within 24 hours.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a
-              href="mailto:sales@carrypacklogistics.com"
-              className="btn-white btn-lg"
-            >
+          <div className="flex flex-col sm:flex-row gap-3 justify-center">
+            <Link href="/get-quote" className="btn-primary btn-lg">
+              Request a Quote
+              <ArrowRight size={18} className="ml-2" />
+            </Link>
+            <a href="mailto:sales@carrypacklogistics.com" className="btn-secondary btn-lg">
               Email Us
             </a>
-            <Link href="/contact" className="btn-outline-white btn-lg">
-              Contact Form
-            </Link>
           </div>
         </div>
       </section>

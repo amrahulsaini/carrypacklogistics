@@ -9,7 +9,7 @@ export default function ServicesPage() {
       title: 'Separate Vehicle Service',
       description: 'Dedicated vehicles exclusively for your cargo needs, ensuring maximum privacy, security, and direct delivery to your destination.',
       features: [
-        'Exclusive vehicle usage - no shared space',
+        'Exclusive vehicle usage — no shared space',
         'Direct point-to-point delivery',
         'Premium security and handling',
         'Flexible scheduling options',
@@ -18,12 +18,7 @@ export default function ServicesPage() {
         'Insurance coverage included',
         'Ideal for sensitive or high-value cargo'
       ],
-      benefits: [
-        'Complete privacy and security',
-        'Faster delivery times',
-        'No intermediate stops',
-        'Customizable service'
-      ]
+      benefits: ['Complete privacy and security', 'Faster delivery times', 'No intermediate stops', 'Customizable service']
     },
     {
       id: 'sharing-vehicle',
@@ -40,12 +35,7 @@ export default function ServicesPage() {
         'Tracking and updates',
         'Perfect for smaller loads'
       ],
-      benefits: [
-        'Significant cost savings',
-        'Eco-friendly shared transport',
-        'Regular departure schedules',
-        'Reliable service'
-      ]
+      benefits: ['Significant cost savings', 'Eco-friendly shared transport', 'Regular departure schedules', 'Reliable service']
     },
     {
       id: 'warehouse',
@@ -62,12 +52,7 @@ export default function ServicesPage() {
         'Pest control measures',
         'Loading/unloading facilities'
       ],
-      benefits: [
-        'Safe and secure storage',
-        'Flexible terms',
-        'Professional management',
-        'Strategic location'
-      ]
+      benefits: ['Safe and secure storage', 'Flexible terms', 'Professional management', 'Strategic location']
     },
     {
       id: 'car-transport',
@@ -84,12 +69,7 @@ export default function ServicesPage() {
         'Scratch-free delivery guarantee',
         'All car types accommodated'
       ],
-      benefits: [
-        'Safe and secure transit',
-        'Hassle-free process',
-        'Insurance protected',
-        'Timely delivery'
-      ]
+      benefits: ['Safe and secure transit', 'Hassle-free process', 'Insurance protected', 'Timely delivery']
     },
     {
       id: 'bike-transport',
@@ -106,12 +86,7 @@ export default function ServicesPage() {
         'Damage protection guarantee',
         'All bike models accepted'
       ],
-      benefits: [
-        'Safe packaging',
-        'Quick delivery',
-        'Expert handling',
-        'Affordable rates'
-      ]
+      benefits: ['Safe packaging', 'Quick delivery', 'Expert handling', 'Affordable rates']
     },
     {
       id: 'door-to-door',
@@ -128,85 +103,112 @@ export default function ServicesPage() {
         'Hassle-free experience',
         'All-inclusive service'
       ],
-      benefits: [
-        'Ultimate convenience',
-        'Complete tracking',
-        'Time-saving',
-        'Peace of mind'
-      ]
+      benefits: ['Ultimate convenience', 'Complete tracking', 'Time-saving', 'Peace of mind']
     }
   ];
 
   return (
     <div className="page-container">
-      {/* Header Section */}
-      <section className="py-20 bg-gradient-to-r from-blue-600 to-blue-800 text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl md:text-5xl font-bold mb-6">Our Services</h1>
-          <p className="text-xl text-blue-100 max-w-3xl mx-auto">
+      {/* Header */}
+      <section className="bg-[#1a365d] relative overflow-hidden">
+        <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: 'url("data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%23ffffff\' fill-opacity=\'1\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")' }}></div>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 relative">
+          <p className="text-[#c8a951] text-xs uppercase tracking-[0.2em] font-semibold mb-4">What We Offer</p>
+          <h1 className="text-4xl md:text-5xl font-bold text-white mb-4" style={{ letterSpacing: '-0.03em' }}>
+            Our Services
+          </h1>
+          <p className="text-lg text-gray-300 max-w-2xl">
             Comprehensive logistics solutions designed to meet all your transportation and storage needs with excellence and reliability.
           </p>
         </div>
       </section>
 
-      {/* Services Detail Section */}
+      {/* Services Detail */}
       <section className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="space-y-20">
+          <div className="space-y-24">
             {services.map((service, index) => (
               <div
                 key={service.id}
                 id={service.id}
-                className={`flex flex-col ${
-                  index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'
-                } gap-12 items-center scroll-mt-24`}
+                className="scroll-mt-24"
               >
-                {/* Icon and Title Section */}
-                <div className="flex-1">
-                  <div className="inline-flex items-center justify-center w-20 h-20 bg-blue-100 rounded-2xl mb-6">
-                    <service.icon size={40} className="text-blue-600" />
-                  </div>
-                  <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-                    {service.title}
-                  </h2>
-                  <p className="text-lg text-gray-600 mb-6">
-                    {service.description}
-                  </p>
-                  <div className="mb-6">
-                    <h3 className="text-xl font-semibold text-gray-900 mb-4">Key Benefits:</h3>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                      {service.benefits.map((benefit, idx) => (
-                        <div key={idx} className="flex items-start space-x-2">
-                          <CheckCircle size={20} className="text-green-500 mt-0.5 flex-shrink-0" />
-                          <span className="text-gray-700">{benefit}</span>
-                        </div>
-                      ))}
+                {/* Service number + title row */}
+                <div className="flex items-start gap-6 mb-8">
+                  <span className="text-6xl font-bold text-gray-100 leading-none select-none hidden sm:block" style={{ fontFeatureSettings: '"tnum"' }}>
+                    {String(index + 1).padStart(2, '0')}
+                  </span>
+                  <div>
+                    <div className="w-10 h-10 rounded-lg bg-[#1a365d]/5 flex items-center justify-center mb-3">
+                      <service.icon size={20} className="text-[#1a365d]" />
                     </div>
+                    <h2 className="text-2xl md:text-3xl font-bold text-gray-900" style={{ letterSpacing: '-0.02em' }}>
+                      {service.title}
+                    </h2>
                   </div>
-                  <Link
-                    href="/contact"
-                    className="btn-primary inline-flex items-center"
-                  >
-                    Request Quote
-                    <ArrowRight size={18} className="ml-2" />
-                  </Link>
                 </div>
 
-                {/* Features Section */}
-                <div className="flex-1 w-full">
-                  <div className="bg-gray-50 rounded-2xl p-8">
-                    <h3 className="text-xl font-semibold text-gray-900 mb-6">Service Features:</h3>
+                <div className="grid lg:grid-cols-2 gap-10 pl-0 sm:pl-20">
+                  {/* Left — description + benefits */}
+                  <div>
+                    <p className="text-gray-500 leading-relaxed mb-6">{service.description}</p>
+                    <div className="mb-6">
+                      <h3 className="text-xs uppercase tracking-[0.15em] text-gray-400 font-semibold mb-4">Key Benefits</h3>
+                      <div className="grid grid-cols-2 gap-3">
+                        {service.benefits.map((benefit, idx) => (
+                          <div key={idx} className="flex items-start space-x-2">
+                            <div className="w-1.5 h-1.5 rounded-full bg-[#c8a951] mt-2 flex-shrink-0"></div>
+                            <span className="text-sm text-gray-600">{benefit}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                    <Link href="/get-quote" className="btn-primary inline-flex items-center group">
+                      Request Quote
+                      <ArrowRight size={16} className="ml-2 transition-transform group-hover:translate-x-1" />
+                    </Link>
+                  </div>
+
+                  {/* Right — features */}
+                  <div className="bg-[#fafafa] rounded-xl p-6 border border-gray-100">
+                    <h3 className="text-xs uppercase tracking-[0.15em] text-gray-400 font-semibold mb-5">Service Features</h3>
                     <ul className="space-y-3">
                       {service.features.map((feature, idx) => (
                         <li key={idx} className="flex items-start space-x-3">
-                          <div className="flex-shrink-0 w-6 h-6 bg-blue-600 rounded-full flex items-center justify-center mt-0.5">
-                            <CheckCircle size={16} className="text-white" />
-                          </div>
-                          <span className="text-gray-700">{feature}</span>
+                          <CheckCircle size={16} className="text-[#c8a951] mt-0.5 flex-shrink-0" />
+                          <span className="text-sm text-gray-600">{feature}</span>
                         </li>
                       ))}
                     </ul>
                   </div>
+                </div>
+
+                {/* Separator */}
+                {index < services.length - 1 && (
+                  <div className="mt-24 border-t border-gray-100"></div>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Bottom features bar */}
+      <section className="bg-[#fafafa] border-t border-gray-100">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {[
+              { icon: Clock, title: '24/7 Support', desc: 'Round-the-clock customer service for all your queries.' },
+              { icon: Shield, title: 'Fully Insured', desc: 'Comprehensive insurance on every shipment we handle.' },
+              { icon: MapPin, title: 'Real-Time Tracking', desc: 'Track your shipment live with our advanced systems.' },
+            ].map((item, i) => (
+              <div key={i} className="flex items-start gap-4">
+                <div className="w-10 h-10 rounded-lg bg-[#1a365d]/5 flex items-center justify-center flex-shrink-0">
+                  <item.icon size={18} className="text-[#1a365d]" />
+                </div>
+                <div>
+                  <h3 className="font-semibold text-gray-900 mb-1">{item.title}</h3>
+                  <p className="text-sm text-gray-500">{item.desc}</p>
                 </div>
               </div>
             ))}
@@ -214,59 +216,22 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      {/* Additional Info Section */}
-      <section className="py-20 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="text-center p-8 bg-white rounded-xl shadow-sm">
-              <div className="inline-flex items-center justify-center w-16 h-16 bg-blue-100 rounded-full mb-4">
-                <Clock size={32} className="text-blue-600" />
-              </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-2">24/7 Support</h3>
-              <p className="text-gray-600">
-                Round-the-clock customer service for all your queries and needs.
-              </p>
-            </div>
-            <div className="text-center p-8 bg-white rounded-xl shadow-sm">
-              <div className="inline-flex items-center justify-center w-16 h-16 bg-blue-100 rounded-full mb-4">
-                <Shield size={32} className="text-blue-600" />
-              </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-2">Fully Insured</h3>
-              <p className="text-gray-600">
-                All shipments covered with comprehensive insurance for your peace of mind.
-              </p>
-            </div>
-            <div className="text-center p-8 bg-white rounded-xl shadow-sm">
-              <div className="inline-flex items-center justify-center w-16 h-16 bg-blue-100 rounded-full mb-4">
-                <MapPin size={32} className="text-blue-600" />
-              </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-2">Real-Time Tracking</h3>
-              <p className="text-gray-600">
-                Track your shipment in real-time with our advanced tracking system.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* CTA Section */}
+      {/* CTA */}
       <section className="py-20 bg-white">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
-            Need a Custom Solution?
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <p className="section-label">Custom Solutions</p>
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4" style={{ letterSpacing: '-0.03em' }}>
+            Need something tailored?
           </h2>
-          <p className="text-xl text-gray-600 mb-8">
-            We can tailor our services to meet your specific requirements. Get in touch with us today!
+          <p className="text-gray-500 mb-8">
+            We can customize our services to meet your specific requirements. Get in touch today.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a
-              href="mailto:sales@carrypacklogistics.com"
-              className="btn-primary btn-lg"
-            >
-              Email Us
-            </a>
+          <div className="flex flex-col sm:flex-row gap-3 justify-center">
+            <Link href="/get-quote" className="btn-primary btn-lg">
+              Get a Quote
+            </Link>
             <Link href="/contact" className="btn-secondary btn-lg">
-              Contact Form
+              Contact Us
             </Link>
           </div>
         </div>

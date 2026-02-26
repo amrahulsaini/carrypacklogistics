@@ -1,123 +1,122 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { Mail, MapPin, Phone, Facebook, Instagram } from 'lucide-react';
+import { Mail, MapPin, Phone, Facebook, Instagram, ArrowUpRight } from 'lucide-react';
 
 export default function Footer() {
   return (
-    <footer className="bg-gray-900 text-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {/* Company Info */}
-          <div>
-            <div className="flex items-center space-x-3 mb-4">
-              <div className="relative w-10 h-10 rounded-full bg-white shadow-md overflow-hidden border-2 border-gray-700">
+    <footer className="bg-[#0f172a] text-white">
+      {/* Top bar */}
+      <div className="border-b border-white/5">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+            <div className="flex items-center space-x-3">
+              <div className="relative w-9 h-9 rounded-full overflow-hidden border border-white/10">
                 <Image
                   src="/logo-carry.webp"
                   alt="Carry Pack Logistics"
                   fill
-                  className="object-cover p-1"
+                  className="object-cover p-0.5"
                 />
               </div>
-              <h3 className="text-xl font-bold">Carry Pack Logistics</h3>
+              <span className="text-lg font-semibold tracking-tight">Carry Pack Logistics</span>
             </div>
-            <p className="text-gray-400 text-sm mb-4">
-              Structured Logistics. Transparent Commitments. Premium Execution.
+            <p className="text-sm text-gray-500 tracking-wide">
+              Structured Logistics · Transparent Commitments · Premium Execution
             </p>
-            <div className="flex space-x-4">
+          </div>
+        </div>
+      </div>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+          {/* About */}
+          <div>
+            <h4 className="text-xs uppercase tracking-[0.2em] text-gray-500 font-semibold mb-5">About</h4>
+            <p className="text-sm text-gray-400 leading-relaxed mb-6">
+              Your trusted logistics partner in Ahmedabad, delivering excellence in transportation and warehousing solutions since day one.
+            </p>
+            <div className="flex space-x-3">
               <a href="https://www.facebook.com/share/1CQxVgbM4i/" target="_blank" rel="noopener noreferrer" className="social-icon" aria-label="Facebook">
-                <Facebook size={20} />
+                <Facebook size={18} />
               </a>
               <a href="https://www.instagram.com/gabrumunda09?igsh=ZXdiMTFsM3BnN2lq" target="_blank" rel="noopener noreferrer" className="social-icon" aria-label="Instagram">
-                <Instagram size={20} />
+                <Instagram size={18} />
               </a>
             </div>
           </div>
 
           {/* Quick Links */}
           <div>
-            <h4 className="text-lg font-semibold mb-4">Quick Links</h4>
-            <ul className="space-y-2">
-              <li>
-                <Link href="/" className="footer-link">Home</Link>
-              </li>
-              <li>
-                <Link href="/services" className="footer-link">Services</Link>
-              </li>
-              <li>
-                <Link href="/about" className="footer-link">About Us</Link>
-              </li>
-              <li>
-                <Link href="/contact" className="footer-link">Contact</Link>
-              </li>
+            <h4 className="text-xs uppercase tracking-[0.2em] text-gray-500 font-semibold mb-5">Navigate</h4>
+            <ul className="space-y-3">
+              {[
+                { href: '/', label: 'Home' },
+                { href: '/services', label: 'Services' },
+                { href: '/about', label: 'About Us' },
+                { href: '/gallery', label: 'Gallery' },
+                { href: '/contact', label: 'Contact' },
+              ].map((link) => (
+                <li key={link.href}>
+                  <Link href={link.href} className="footer-link inline-flex items-center group">
+                    {link.label}
+                    <ArrowUpRight size={12} className="ml-1 opacity-0 group-hover:opacity-100 transition-opacity" />
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
           {/* Services */}
           <div>
-            <h4 className="text-lg font-semibold mb-4">Our Services</h4>
-            <ul className="space-y-2">
-              <li>
-                <Link href="/services#separate-vehicle" className="footer-link">
-                  Separate Vehicle Service
-                </Link>
-              </li>
-              <li>
-                <Link href="/services#sharing-vehicle" className="footer-link">
-                  Sharing Vehicle Service
-                </Link>
-              </li>
-              <li>
-                <Link href="/services#warehouse" className="footer-link">
-                  Warehouse Solutions
-                </Link>
-              </li>
-              <li>
-                <Link href="/services#car-transport" className="footer-link">
-                  Car Transport
-                </Link>
-              </li>
-              <li>
-                <Link href="/services#bike-transport" className="footer-link">
-                  Bike Transport
-                </Link>
-              </li>
-              <li>
-                <Link href="/services#door-to-door" className="footer-link">
-                  Door-to-Door Service
-                </Link>
-              </li>
+            <h4 className="text-xs uppercase tracking-[0.2em] text-gray-500 font-semibold mb-5">Services</h4>
+            <ul className="space-y-3">
+              {[
+                { href: '/services#separate-vehicle', label: 'Separate Vehicle' },
+                { href: '/services#sharing-vehicle', label: 'Sharing Vehicle' },
+                { href: '/services#warehouse', label: 'Warehouse Solutions' },
+                { href: '/services#car-transport', label: 'Car Transport' },
+                { href: '/services#bike-transport', label: 'Bike Transport' },
+                { href: '/services#door-to-door', label: 'Door-to-Door' },
+              ].map((link) => (
+                <li key={link.href}>
+                  <Link href={link.href} className="footer-link">{link.label}</Link>
+                </li>
+              ))}
             </ul>
           </div>
 
-          {/* Contact Info */}
+          {/* Contact */}
           <div>
-            <h4 className="text-lg font-semibold mb-4">Contact Us</h4>
-            <ul className="space-y-3">
+            <h4 className="text-xs uppercase tracking-[0.2em] text-gray-500 font-semibold mb-5">Contact</h4>
+            <ul className="space-y-4">
               <li className="flex items-start space-x-3">
-                <MapPin size={20} className="text-blue-400 mt-1 flex-shrink-0" />
-                <span className="text-sm text-gray-400">
+                <MapPin size={16} className="text-[#c8a951] mt-0.5 flex-shrink-0" />
+                <span className="text-sm text-gray-400 leading-relaxed">
                   Office No.223, Bijal Business Centre, Aslali Circle, Ahmedabad
                 </span>
               </li>
               <li className="flex items-center space-x-3">
-                <Mail size={20} className="text-blue-400 flex-shrink-0" />
+                <Mail size={16} className="text-[#c8a951] flex-shrink-0" />
                 <a href="mailto:sales@carrypacklogistics.com" className="text-sm text-gray-400 hover:text-white transition-colors">
                   sales@carrypacklogistics.com
                 </a>
               </li>
               <li className="flex items-center space-x-3">
-                <Phone size={20} className="text-blue-400 flex-shrink-0" />
-                <span className="text-sm text-gray-400">
+                <Phone size={16} className="text-[#c8a951] flex-shrink-0" />
+                <a href="tel:+918949437619" className="text-sm text-gray-400 hover:text-white transition-colors">
                   +91 89494 37619
-                </span>
+                </a>
               </li>
             </ul>
           </div>
         </div>
+      </div>
 
-        <div className="border-t border-gray-800 mt-8 pt-8 text-center">
-          <p className="text-sm text-gray-400">
-            &copy; {new Date().getFullYear()} Carry Pack Logistics. All rights reserved.
+      {/* Bottom */}
+      <div className="border-t border-white/5">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+          <p className="text-xs text-gray-600 text-center">
+            © {new Date().getFullYear()} Carry Pack Logistics. All rights reserved.
           </p>
         </div>
       </div>

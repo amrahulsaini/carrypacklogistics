@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { useState, useEffect } from 'react';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, ArrowRight } from 'lucide-react';
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -17,91 +17,96 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const links = [
+    { href: '/', label: 'Home' },
+    { href: '/services', label: 'Services' },
+    { href: '/about', label: 'About' },
+    { href: '/gallery', label: 'Gallery' },
+    { href: '/contact', label: 'Contact' },
+  ];
+
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-      scrolled ? 'bg-white shadow-lg py-2' : 'bg-white/95 backdrop-blur-sm shadow-md py-0'
+    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      scrolled
+        ? 'bg-white/98 backdrop-blur-md shadow-[0_1px_0_0_rgba(0,0,0,0.05)] py-1'
+        : 'bg-white py-0'
     }`}>
-      <div className="w-full px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-20">
-          {/* Logo and Company Name - Leftmost */}
-          <Link href="/" className="flex items-center space-x-4 group mr-auto">
-            <div className="relative w-16 h-16 flex-shrink-0 transition-all duration-500 group-hover:scale-110 group-hover:rotate-6 rounded-full bg-white shadow-lg overflow-hidden border-2 border-blue-100 group-hover:border-blue-400">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex justify-between items-center h-[72px]">
+          {/* Logo */}
+          <Link href="/" className="flex items-center space-x-3 group">
+            <div className="relative w-11 h-11 flex-shrink-0 rounded-full overflow-hidden border border-gray-200">
               <Image
                 src="/logo-carry.webp"
                 alt="Carry Pack Logistics"
                 fill
-                className="object-cover p-2"
+                className="object-cover p-1"
                 priority
               />
             </div>
-            <div className="flex flex-col justify-center">
-              <h1 className="text-xl sm:text-2xl font-bold text-gray-900 transition-all duration-300 group-hover:text-blue-600 group-hover:translate-x-1">
-                Carry Pack Logistics
-              </h1>
-              <p className="text-[10px] sm:text-xs text-gray-600 hidden sm:block transition-all duration-300 group-hover:text-blue-500 leading-tight">
-                Structured Logistics. Transparent Commitments.
-              </p>
+            <div>
+              <span className="text-lg font-bold tracking-tight text-[#1a365d]">
+                Carry Pack
+              </span>
+              <span className="hidden sm:inline text-lg font-light tracking-tight text-gray-400 ml-1">
+                Logistics
+              </span>
             </div>
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-6 lg:space-x-8">
-            <Link href="/" className="nav-link-enhanced">Home</Link>
-            <Link href="/services" className="nav-link-enhanced">Services</Link>
-            <Link href="/about" className="nav-link-enhanced">About</Link>
-            <Link href="/gallery" className="nav-link-enhanced">Gallery</Link>
-            <Link href="/contact" className="nav-link-enhanced">Contact</Link>
-            <Link 
-              href="/get-quote" 
-              className="btn-primary-enhanced"
+          <div className="hidden lg:flex items-center space-x-8">
+            {links.map((link) => (
+              <Link key={link.href} href={link.href} className="nav-link-enhanced">
+                {link.label}
+              </Link>
+            ))}
+            <Link
+              href="/get-quote"
+              className="btn-primary-enhanced group"
             >
               Get Quote
+              <ArrowRight size={14} className="ml-1.5 transition-transform group-hover:translate-x-0.5" />
             </Link>
           </div>
 
           {/* Mobile menu button */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden p-2 rounded-lg hover:bg-blue-50 transition-all duration-300 hover:scale-110 active:scale-95"
+            className="lg:hidden p-2 -mr-2 rounded-md hover:bg-gray-50 transition-colors"
+            aria-label="Toggle menu"
           >
-            {isOpen ? (
-              <X size={24} className="text-gray-700 transition-transform duration-300 rotate-90" />
-            ) : (
-              <Menu size={24} className="text-gray-700" />
-            )}
+            {isOpen ? <X size={22} className="text-gray-600" /> : <Menu size={22} className="text-gray-600" />}
           </button>
         </div>
       </div>
 
       {/* Mobile Navigation */}
       <div
-        className={`md:hidden transition-all duration-500 ease-in-out ${
-          isOpen ? 'max-h-96 opacity-100 translate-y-0' : 'max-h-0 opacity-0 -translate-y-4 overflow-hidden'
+        className={`lg:hidden transition-all duration-300 ease-in-out ${
+          isOpen ? 'max-h-[400px] opacity-100' : 'max-h-0 opacity-0 overflow-hidden'
         }`}
       >
-        <div className="px-4 pt-2 pb-4 space-y-2 bg-white border-t border-gray-100">
-          <Link href="/" className="mobile-nav-link-enhanced" onClick={() => setIsOpen(false)}>
-            Home
-          </Link>
-          <Link href="/services" className="mobile-nav-link-enhanced" onClick={() => setIsOpen(false)}>
-            Services
-          </Link>
-          <Link href="/about" className="mobile-nav-link-enhanced" onClick={() => setIsOpen(false)}>
-            About
-          </Link>
-          <Link href="/gallery" className="mobile-nav-link-enhanced" onClick={() => setIsOpen(false)}>
-            Gallery
-          </Link>
-          <Link href="/contact" className="mobile-nav-link-enhanced" onClick={() => setIsOpen(false)}>
-            Contact
-          </Link>
-          <Link 
-            href="/get-quote" 
-            className="block w-full text-center btn-primary-enhanced mt-4"
-            onClick={() => setIsOpen(false)}
-          >
-            Get Quote
-          </Link>
+        <div className="px-4 pt-1 pb-5 space-y-1 bg-white border-t border-gray-100">
+          {links.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              className="mobile-nav-link-enhanced"
+              onClick={() => setIsOpen(false)}
+            >
+              {link.label}
+            </Link>
+          ))}
+          <div className="pt-3">
+            <Link
+              href="/get-quote"
+              className="block w-full text-center btn-primary-enhanced py-3"
+              onClick={() => setIsOpen(false)}
+            >
+              Get Quote
+            </Link>
+          </div>
         </div>
       </div>
     </nav>
