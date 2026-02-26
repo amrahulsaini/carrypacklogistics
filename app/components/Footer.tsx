@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { Mail, MapPin, Phone, Facebook, Twitter, Linkedin, Instagram } from 'lucide-react';
+import { Mail, MapPin, Phone, Facebook, Instagram } from 'lucide-react';
 
 export default function Footer() {
   return (
@@ -24,16 +24,10 @@ export default function Footer() {
               Structured Logistics. Transparent Commitments. Premium Execution.
             </p>
             <div className="flex space-x-4">
-              <a href="#" className="social-icon">
+              <a href="https://www.facebook.com/share/1CQxVgbM4i/" target="_blank" rel="noopener noreferrer" className="social-icon" aria-label="Facebook">
                 <Facebook size={20} />
               </a>
-              <a href="#" className="social-icon">
-                <Twitter size={20} />
-              </a>
-              <a href="#" className="social-icon">
-                <Linkedin size={20} />
-              </a>
-              <a href="#" className="social-icon">
+              <a href="https://www.instagram.com/gabrumunda09?igsh=ZXdiMTFsM3BnN2lq" target="_blank" rel="noopener noreferrer" className="social-icon" aria-label="Instagram">
                 <Instagram size={20} />
               </a>
             </div>
