@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import { ChevronLeft, ChevronRight, Star, Quote } from 'lucide-react';
 
 const reviews = [
@@ -87,6 +87,27 @@ export default function TestimonialsSlider() {
     [animating, total]
   );
 
+  // Touch / swipe support
+  const touchStartX = useRef<number>(0);
+  const touchStartY = useRef<number>(0);
+
+  const handleTouchStart = useCallback((e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX;
+    touchStartY.current = e.touches[0].clientY;
+  }, []);
+
+  const handleTouchEnd = useCallback(
+    (e: React.TouchEvent) => {
+      const dx = touchStartX.current - e.changedTouches[0].clientX;
+      const dy = touchStartY.current - e.changedTouches[0].clientY;
+      // Only trigger if horizontal movement dominates and exceeds threshold
+      if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 45) {
+        go(dx > 0 ? 1 : -1);
+      }
+    },
+    [go]
+  );
+
   // Auto-play every 5 s
   useEffect(() => {
     const id = setInterval(() => go(1), 5000);
@@ -98,7 +119,11 @@ export default function TestimonialsSlider() {
   const next = (active + 1) % total;
 
   return (
-    <div className="select-none">
+    <div
+      className="select-none"
+      onTouchStart={handleTouchStart}
+      onTouchEnd={handleTouchEnd}
+    >
       {/* Desktop — 3 cards side by side */}
       <div className="hidden md:grid md:grid-cols-3 gap-6">
         {[prev, active, next].map((idx, pos) => {
