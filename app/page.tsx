@@ -47,8 +47,8 @@ export default function HomePage() {
     <div className="page-container">
       {/* Hero Section */}
       <section className="hero-section relative">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 lg:py-36">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-12 lg:pt-10 lg:pb-16">
+          <div className="grid items-center">
             {/* Left — Copy */}
             <div>
               <p className="section-label animate-fade-in-up">Logistics Partner in Ahmedabad</p>
@@ -88,8 +88,8 @@ export default function HomePage() {
               </div>
             </div>
 
-            {/* Right — Logo / Visual */}
-            <div className="hidden lg:flex justify-center">
+            {/* Right — Logo / Visual (hidden) */}
+            <div className="hidden">
               <div className="relative">
                 <div className="w-72 h-72 rounded-3xl bg-gradient-to-br from-[#1a365d] to-[#2a4a7f] flex items-center justify-center shadow-2xl shadow-[#1a365d]/20">
                   <div className="relative w-40 h-40 rounded-full bg-white overflow-hidden">
@@ -112,9 +112,9 @@ export default function HomePage() {
       </section>
 
       {/* Services Section */}
-      <section className="py-24 bg-white">
+      <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-16">
+          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-12">
             <div>
               <p className="section-label">What We Do</p>
               <h2 className="text-3xl md:text-4xl font-bold text-gray-900" style={{ letterSpacing: '-0.03em' }}>
@@ -154,10 +154,117 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* How It Works — Vertical Flowchart */}
+      <section className="py-20 bg-[#f8f9fc] relative overflow-hidden">
+        <div
+          className="absolute inset-0 pointer-events-none opacity-[0.03]"
+          style={{
+            backgroundImage: 'radial-gradient(circle, #1a365d 1px, transparent 1px)',
+            backgroundSize: '28px 28px',
+          }}
+        />
+
+        <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+          {/* Header */}
+          <div className="text-center mb-14">
+            <p className="section-label">Simple Process</p>
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3" style={{ letterSpacing: '-0.03em' }}>
+              How it works
+            </h2>
+            <p className="text-gray-500 max-w-lg mx-auto text-sm leading-relaxed">
+              Four seamless steps — from booking to your doorstep.
+            </p>
+          </div>
+
+          {/* Vertical flowchart */}
+          <div className="relative">
+            {/* Continuous spine line */}
+            <div className="absolute left-[27px] sm:left-1/2 sm:-translate-x-px top-0 bottom-0 w-0.5 bg-gradient-to-b from-[#1a365d] via-[#c8a951] to-[#1a365d]" />
+
+            <div className="space-y-0">
+              {[
+                { step: '01', img: '/book-order.webp',  title: 'Book Your Order',    desc: "Fill out our quote form or call us. We'll confirm your booking within hours.",  dot: 'bg-[#1a365d]', side: 'left'  },
+                { step: '02', img: '/pack-things.webp', title: 'We Pack Everything', desc: 'Our crew arrives and wraps every item with premium protective materials.',       dot: 'bg-[#c8a951]', side: 'right' },
+                { step: '03', img: '/move-things.webp', title: 'We Move with Care',  desc: 'Shipment loaded securely and transported with real-time tracking.',              dot: 'bg-[#1a365d]', side: 'left'  },
+                { step: '04', img: '/delivery.webp',    title: 'Safe Delivery',      desc: 'Goods unloaded and delivered right to your door — on time, every time.',        dot: 'bg-[#c8a951]', side: 'right' },
+              ].map((item, i) => (
+                <div key={item.step}>
+                  {/* ── Mobile: single column left-aligned ── */}
+                  <div className="flex gap-4 items-center sm:hidden py-4">
+                    <div className={`relative z-10 flex-shrink-0 w-[54px] h-[54px] rounded-full ${item.dot} flex items-center justify-center text-white font-bold text-sm shadow-md border-4 border-[#f8f9fc]`}>
+                      {item.step}
+                    </div>
+                    <div className="flex-1 bg-white rounded-2xl border border-gray-200 shadow-sm p-4 flex gap-3 items-start">
+                      <div className="relative flex-shrink-0 w-12 h-12 rounded-xl overflow-hidden">
+                        <Image src={item.img} alt={item.title} fill className="object-cover" sizes="64px" />
+                      </div>
+                      <div>
+                        <h3 className="text-sm font-bold text-gray-900 mb-1">{item.title}</h3>
+                        <p className="text-xs text-gray-500 leading-relaxed">{item.desc}</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* ── sm+: alternating left / right ── */}
+                  <div className="hidden sm:grid grid-cols-[1fr_56px_1fr] items-center py-3">
+                    {/* Left slot */}
+                    {item.side === 'left' ? (
+                      <div className="bg-white rounded-2xl border border-gray-200 shadow-sm p-5 flex gap-4 items-start group hover:shadow-md hover:border-[#1a365d]/25 transition-all mr-4">
+                        <div className="relative flex-shrink-0 w-14 h-14 rounded-xl overflow-hidden">
+                          <Image src={item.img} alt={item.title} fill className="object-cover transition-transform duration-500 group-hover:scale-105" sizes="56px" />
+                        </div>
+                        <div className="pt-0.5">
+                          <h3 className="text-sm font-bold text-gray-900 mb-1">{item.title}</h3>
+                          <p className="text-xs text-gray-500 leading-relaxed">{item.desc}</p>
+                        </div>
+                      </div>
+                    ) : (
+                      <div />
+                    )}
+
+                    {/* Centre node */}
+                    <div className="flex flex-col items-center gap-0 relative z-10">
+                      <div className={`w-[46px] h-[46px] rounded-full ${item.dot} text-white font-bold text-sm flex items-center justify-center shadow-lg border-4 border-[#f8f9fc] flex-shrink-0`}>
+                        {item.step}
+                      </div>
+                    </div>
+
+                    {/* Right slot */}
+                    {item.side === 'right' ? (
+                      <div className="bg-white rounded-2xl border border-gray-200 shadow-sm p-5 flex gap-4 items-start group hover:shadow-md hover:border-[#c8a951]/30 transition-all ml-4">
+                        <div className="relative flex-shrink-0 w-14 h-14 rounded-xl overflow-hidden">
+                          <Image src={item.img} alt={item.title} fill className="object-cover transition-transform duration-500 group-hover:scale-105" sizes="56px" />
+                        </div>
+                        <div className="pt-0.5">
+                          <h3 className="text-sm font-bold text-gray-900 mb-1">{item.title}</h3>
+                          <p className="text-xs text-gray-500 leading-relaxed">{item.desc}</p>
+                        </div>
+                      </div>
+                    ) : (
+                      <div />
+                    )}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* CTA */}
+          <div className="mt-12 text-center">
+            <Link
+              href="/get-quote"
+              className="inline-flex items-center gap-2 bg-[#1a365d] hover:bg-[#2a4a7f] text-white font-medium px-8 py-3.5 rounded-full transition-all duration-300 shadow-lg shadow-[#1a365d]/20 hover:shadow-xl hover:-translate-y-0.5"
+            >
+              Start Your Journey
+              <ArrowRight size={16} />
+            </Link>
+          </div>
+        </div>
+      </section>
       {/* Why Choose Us — Horizontal layout */}
-      <section className="py-24 bg-[#fafafa]">
+      <section className="py-16 bg-[#fafafa]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-5 gap-12 items-start">
+          <div className="grid lg:grid-cols-5 gap-10 items-start">
             {/* Left column */}
             <div className="lg:col-span-2">
               <p className="section-label">Why Carry Pack</p>
@@ -181,7 +288,7 @@ export default function HomePage() {
                 { icon: Users, title: 'Professional Team', desc: 'Experienced logistics professionals trained for careful handling and execution.' },
                 { icon: CheckCircle, title: 'Transparent Pricing', desc: 'No hidden costs. Clear, upfront rates so you know exactly what to expect.' },
               ].map((item, i) => (
-                <div key={i} className="bg-white p-6 rounded-xl border border-gray-100 hover:border-[#c8a951]/30 transition-colors">
+                <div key={i} className="bg-white p-5 sm:p-6 rounded-xl border border-gray-200 hover:border-[#c8a951]/40 transition-all shadow-sm hover:shadow-md">
                   <item.icon size={20} className="text-[#c8a951] mb-4" />
                   <h3 className="text-base font-semibold text-gray-900 mb-2">{item.title}</h3>
                   <p className="text-sm text-gray-500 leading-relaxed">{item.desc}</p>
@@ -215,7 +322,7 @@ export default function HomePage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-24 bg-white">
+      <section className="py-16 bg-white">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <p className="section-label">Get Started</p>
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4" style={{ letterSpacing: '-0.03em' }}>

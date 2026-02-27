@@ -112,7 +112,7 @@ export default function ServicesPage() {
       {/* Header */}
       <section className="bg-[#1a365d] relative overflow-hidden">
         <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: 'url("data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%23ffffff\' fill-opacity=\'1\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")' }}></div>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 relative">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-10 relative">
           <p className="text-[#c8a951] text-xs uppercase tracking-[0.2em] font-semibold mb-4">What We Offer</p>
           <h1 className="text-4xl md:text-5xl font-bold text-white mb-4" style={{ letterSpacing: '-0.03em' }}>
             Our Services
@@ -124,9 +124,9 @@ export default function ServicesPage() {
       </section>
 
       {/* Services Detail */}
-      <section className="py-20">
+      <section className="py-14">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="space-y-24">
+          <div className="space-y-16">
             {services.map((service, index) => (
               <div
                 key={service.id}
@@ -170,7 +170,7 @@ export default function ServicesPage() {
                   </div>
 
                   {/* Right — features */}
-                  <div className="bg-[#fafafa] rounded-xl p-6 border border-gray-100">
+                  <div className="bg-[#fafafa] rounded-xl p-5 sm:p-6 border border-gray-200 shadow-sm">
                     <h3 className="text-xs uppercase tracking-[0.15em] text-gray-400 font-semibold mb-5">Service Features</h3>
                     <ul className="space-y-3">
                       {service.features.map((feature, idx) => (
@@ -185,7 +185,7 @@ export default function ServicesPage() {
 
                 {/* Separator */}
                 {index < services.length - 1 && (
-                  <div className="mt-24 border-t border-gray-100"></div>
+                  <div className="mt-16 border-t border-gray-100"></div>
                 )}
               </div>
             ))}
@@ -217,7 +217,7 @@ export default function ServicesPage() {
       </section>
 
       {/* CTA */}
-      <section className="py-20 bg-white">
+      <section className="py-14 bg-white">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <p className="section-label">Custom Solutions</p>
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4" style={{ letterSpacing: '-0.03em' }}>

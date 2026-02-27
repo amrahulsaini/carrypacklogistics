@@ -8,7 +8,7 @@ export default function AboutPage() {
       {/* Header */}
       <section className="bg-[#1a365d] relative overflow-hidden">
         <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: 'url("data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%23ffffff\' fill-opacity=\'1\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")' }}></div>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 relative">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-10 relative">
           <p className="text-[#c8a951] text-xs uppercase tracking-[0.2em] font-semibold mb-4">Who We Are</p>
           <h1 className="text-4xl md:text-5xl font-bold text-white mb-4" style={{ letterSpacing: '-0.03em' }}>
             About Us
@@ -20,9 +20,9 @@ export default function AboutPage() {
       </section>
 
       {/* Company Overview */}
-      <section className="py-24">
+      <section className="py-14">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-5 gap-16 items-start">
+          <div className="grid lg:grid-cols-5 gap-10 items-start">
             {/* Left — Logo + Stats */}
             <div className="lg:col-span-2">
               <div className="bg-gradient-to-br from-[#1a365d] to-[#2a4a7f] rounded-2xl p-8 flex items-center justify-center mb-8">
@@ -42,7 +42,7 @@ export default function AboutPage() {
                   { value: '99%', label: 'On-Time Rate' },
                   { value: '24/7', label: 'Support' },
                 ].map((stat, i) => (
-                  <div key={i} className="bg-[#fafafa] rounded-xl p-5 border border-gray-100">
+                  <div key={i} className="bg-[#fafafa] rounded-xl p-5 border border-gray-200 shadow-sm">
                     <div className="text-2xl font-bold text-[#1a365d] mb-1">{stat.value}</div>
                     <div className="text-xs text-gray-400 uppercase tracking-wider">{stat.label}</div>
                   </div>
@@ -77,9 +77,9 @@ export default function AboutPage() {
       </section>
 
       {/* Mission, Vision, Values */}
-      <section className="py-24 bg-[#fafafa] border-t border-gray-100">
+      <section className="py-16 bg-[#fafafa] border-t border-gray-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
+          <div className="text-center mb-12">
             <p className="section-label">Our Foundation</p>
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900" style={{ letterSpacing: '-0.03em' }}>
               Mission, Vision & Values
@@ -103,7 +103,7 @@ export default function AboutPage() {
                 text: 'Integrity, transparency, customer focus, innovation, and excellence in execution. These core values guide every decision we make and every service we deliver.'
               },
             ].map((item, i) => (
-              <div key={i} className="bg-white rounded-xl p-8 border border-gray-100">
+              <div key={i} className="bg-white rounded-xl p-6 sm:p-8 border border-gray-200 shadow-sm hover:shadow-md hover:border-[#c8a951]/30 transition-all">
                 <item.icon size={20} className="text-[#c8a951] mb-5" />
                 <h3 className="text-xl font-bold text-gray-900 mb-3">{item.title}</h3>
                 <p className="text-sm text-gray-500 leading-relaxed">{item.text}</p>
@@ -114,9 +114,9 @@ export default function AboutPage() {
       </section>
 
       {/* Why Choose Us */}
-      <section className="py-24">
+      <section className="py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
+          <div className="text-center mb-12">
             <p className="section-label">The Difference</p>
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900" style={{ letterSpacing: '-0.03em' }}>
               Why Choose Carry Pack
@@ -132,7 +132,7 @@ export default function AboutPage() {
               { icon: MapPin, title: 'Wide Network', desc: 'Extensive coverage across major cities ensuring smooth and efficient logistics operations nationwide.' },
               { icon: Award, title: 'Quality Service', desc: 'Commitment to excellence in every aspect of our service, from booking to delivery and beyond.' },
             ].map((item, i) => (
-              <div key={i} className="p-6 rounded-xl border border-gray-100 hover:border-[#c8a951]/30 transition-colors bg-white">
+              <div key={i} className="p-5 sm:p-6 rounded-xl border border-gray-200 hover:border-[#c8a951]/30 transition-all bg-white shadow-sm hover:shadow-md">
                 <item.icon size={18} className="text-[#1a365d] mb-4" />
                 <h3 className="text-base font-semibold text-gray-900 mb-2">{item.title}</h3>
                 <p className="text-sm text-gray-500 leading-relaxed">{item.desc}</p>
@@ -144,11 +144,11 @@ export default function AboutPage() {
 
       {/* Location */}
       <section className="bg-[#fafafa] border-t border-gray-100">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
           <div className="max-w-2xl mx-auto text-center">
             <p className="section-label">Visit Us</p>
             <h2 className="text-3xl font-bold text-gray-900 mb-8" style={{ letterSpacing: '-0.03em' }}>Our Office</h2>
-            <div className="bg-white rounded-xl p-8 border border-gray-100">
+            <div className="bg-white rounded-xl p-7 border border-gray-200 shadow-sm">
               <MapPin size={20} className="text-[#c8a951] mx-auto mb-4" />
               <p className="text-gray-600 mb-2">
                 Office No.223, Bijal Business Centre,<br />

@@ -35,7 +35,7 @@ export default function ContactPage() {
       {/* Header */}
       <section className="bg-[#1a365d] relative overflow-hidden">
         <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: 'url("data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%23ffffff\' fill-opacity=\'1\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")' }}></div>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 relative">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-10 relative">
           <p className="text-[#c8a951] text-xs uppercase tracking-[0.2em] font-semibold mb-4">Reach Out</p>
           <h1 className="text-4xl md:text-5xl font-bold text-white mb-4" style={{ letterSpacing: '-0.03em' }}>
             Contact Us
@@ -47,9 +47,9 @@ export default function ContactPage() {
       </section>
 
       {/* Contact Content */}
-      <section className="py-20">
+      <section className="py-14">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-5 gap-16">
+          <div className="grid lg:grid-cols-5 gap-10">
             {/* Left — Contact info */}
             <div className="lg:col-span-2">
               <h2 className="text-2xl font-bold text-gray-900 mb-2" style={{ letterSpacing: '-0.02em' }}>Get In Touch</h2>
@@ -87,7 +87,7 @@ export default function ContactPage() {
                 ))}
               </div>
 
-              <div className="mt-8 p-5 bg-[#fafafa] rounded-xl border border-gray-100">
+              <div className="mt-8 p-5 bg-[#fafafa] rounded-xl border border-gray-200">
                 <div className="flex items-center gap-3 mb-2">
                   <Clock size={16} className="text-[#c8a951]" />
                   <h3 className="text-sm font-semibold text-gray-900">Business Hours</h3>
@@ -101,7 +101,7 @@ export default function ContactPage() {
 
             {/* Right — Form */}
             <div className="lg:col-span-3">
-              <div className="bg-white rounded-xl border border-gray-100 p-8">
+                  <div className="bg-white rounded-xl border border-gray-200 p-7 sm:p-8 shadow-sm">
                 <h2 className="text-xl font-bold text-gray-900 mb-6" style={{ letterSpacing: '-0.02em' }}>Send Us a Message</h2>
 
                 {isSubmitted ? (

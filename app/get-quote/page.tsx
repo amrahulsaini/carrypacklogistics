@@ -59,7 +59,7 @@ export default function GetQuotePage() {
       {/* Header */}
       <section className="bg-[#1a365d] relative overflow-hidden">
         <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: 'url("data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%23ffffff\' fill-opacity=\'1\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")' }}></div>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 relative">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-10 relative">
           <p className="text-[#c8a951] text-xs uppercase tracking-[0.2em] font-semibold mb-4">Request a Quote</p>
           <h1 className="text-4xl md:text-5xl font-bold text-white mb-4" style={{ letterSpacing: '-0.03em' }}>
             Get Your Quote
@@ -71,9 +71,9 @@ export default function GetQuotePage() {
       </section>
 
       {/* Form Section */}
-      <section className="py-20">
+      <section className="py-14">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-5 gap-16">
+          <div className="grid lg:grid-cols-5 gap-10">
             {/* Left — Info sidebar */}
             <div className="lg:col-span-2 order-2 lg:order-1">
               <h3 className="text-xl font-bold text-gray-900 mb-6" style={{ letterSpacing: '-0.02em' }}>Why choose us?</h3>
@@ -95,7 +95,7 @@ export default function GetQuotePage() {
                 ))}
               </div>
 
-              <div className="bg-[#fafafa] rounded-xl border border-gray-100 p-6">
+                <div className="bg-[#fafafa] rounded-xl border border-gray-200 p-5 sm:p-6 shadow-sm">
                 <h4 className="text-sm font-semibold text-gray-900 mb-3">Need immediate help?</h4>
                 <div className="space-y-3">
                   <a href="tel:+918949437619" className="flex items-center gap-3 text-sm text-gray-600 hover:text-[#1a365d] transition-colors">
@@ -113,7 +113,7 @@ export default function GetQuotePage() {
             {/* Right — Form */}
             <div className="lg:col-span-3 order-1 lg:order-2">
               {isSubmitted ? (
-                <div className="bg-white rounded-xl border border-gray-100 p-12 text-center">
+                <div className="bg-white rounded-xl border border-gray-200 p-10 sm:p-12 text-center shadow-sm">
                   <CheckCircle size={40} className="text-green-500 mx-auto mb-4" />
                   <h2 className="text-2xl font-bold text-gray-900 mb-2">Thank You!</h2>
                   <p className="text-sm text-gray-500 mb-2">Your request has been submitted successfully.</p>
@@ -123,7 +123,7 @@ export default function GetQuotePage() {
                   </button>
                 </div>
               ) : (
-                <div className="bg-white rounded-xl border border-gray-100 p-8">
+                <div className="bg-white rounded-xl border border-gray-200 p-6 sm:p-8 shadow-sm">
                   <h2 className="text-xl font-bold text-gray-900 mb-1" style={{ letterSpacing: '-0.02em' }}>Request a Quote</h2>
                   <p className="text-sm text-gray-400 mb-6">Fill in the details and our experts will get back to you.</p>
 
