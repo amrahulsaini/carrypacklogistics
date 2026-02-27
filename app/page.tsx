@@ -2,6 +2,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { Truck, Package, Warehouse, Car, Bike, Home, ArrowRight, CheckCircle, Clock, Shield, Users, Award, TrendingUp } from 'lucide-react';
 import Counter from './components/Counter';
+import TestimonialsSlider from './components/TestimonialsSlider';
 
 export default function HomePage() {
   const services = [
@@ -318,6 +319,22 @@ export default function HomePage() {
               </div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Testimonials Section */}
+      <section className="py-20 bg-gray-50">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <p className="section-label">Customer Reviews</p>
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3" style={{ letterSpacing: '-0.03em' }}>
+              What our clients say
+            </h2>
+            <p className="text-gray-500 max-w-lg mx-auto text-sm leading-relaxed">
+              Trusted by 1000+ customers across India for safe, reliable logistics.
+            </p>
+          </div>
+          <TestimonialsSlider />
         </div>
       </section>
 
