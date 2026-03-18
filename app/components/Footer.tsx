@@ -92,7 +92,7 @@ export default function Footer() {
               <li className="flex items-start space-x-3">
                 <MapPin size={16} className="text-[#c8a951] mt-0.5 flex-shrink-0" />
                 <span className="text-sm text-gray-400 leading-relaxed">
-                  Office No.223, Bijal Business Centre, Aslali Circle, Ahmedabad
+                  A-11, bijal biasness centre aslali circle ahmedabad 382427
                 </span>
               </li>
               <li className="flex items-center space-x-3">

@@ -4,6 +4,7 @@ import "./globals.css";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import NavigationProgress from "./components/NavigationProgress";
+import { Phone, MessageSquare } from 'lucide-react';
 
 const inter = Inter({
   variable: "--font-inter",
@@ -43,6 +44,28 @@ export default function RootLayout({
           {children}
         </main>
         <Footer />
+
+        <div className="fixed bottom-4 right-4 z-50">
+          <a
+            href="https://wa.me/918949437619?text=Hello%20Carry%20Pack%20Logistics"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center justify-center w-14 h-14 rounded-full bg-[#25D366] text-white shadow-lg hover:scale-105 transition-transform"
+            aria-label="WhatsApp chat"
+          >
+            <MessageSquare size={24} />
+          </a>
+        </div>
+
+        <div className="fixed bottom-4 left-4 z-50">
+          <a
+            href="tel:+918949437619"
+            className="flex items-center justify-center w-14 h-14 rounded-full bg-[#1d4ed8] text-white shadow-lg hover:scale-105 transition-transform"
+            aria-label="Call us"
+          >
+            <Phone size={24} />
+          </a>
+        </div>
       </body>
     </html>
   );

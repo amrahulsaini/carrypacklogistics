@@ -62,7 +62,7 @@ export default function ContactPage() {
                   {
                     icon: MapPin,
                     title: 'Office Address',
-                    content: <span>Office No.223, Bijal Business Centre,<br />Aslali Circle, Ahmedabad</span>
+                    content: <span>A-11, bijal biasness centre aslali circle ahmedabad 382427</span>
                   },
                   {
                     icon: Mail,
