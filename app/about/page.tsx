@@ -151,8 +151,7 @@ export default function AboutPage() {
             <div className="bg-white rounded-xl p-7 border border-gray-200 shadow-sm">
               <MapPin size={20} className="text-[#c8a951] mx-auto mb-4" />
               <p className="text-gray-600 mb-2">
-                Office No.223, Bijal Business Centre,<br />
-                Aslali Circle, Ahmedabad
+                A-11, bijal biasness centre aslali circle ahmedabad 382427
               </p>
               <a href="mailto:sales@carrypacklogistics.com" className="text-[#1a365d] text-sm font-medium hover:underline underline-offset-4">
                 sales@carrypacklogistics.com
